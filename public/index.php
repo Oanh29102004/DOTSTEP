@@ -1,10 +1,15 @@
 <?php
 session_start();
 require_once ('../controllers/admin/CategoryAdminController.php');
+
 require_once '../controllers/admin/ProductAdminController.php';
-$action=isset($_GET['act']) ? $_GET['act'] : 'index';
+
 $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
+
+$action=isset($_GET['act']) ? $_GET['act'] : 'index';
+
+
 switch($action){
     case 'admin':
     include '../views/admin/index.php';
