@@ -15,16 +15,33 @@
 
     <!-- project css file  -->
     <link rel="stylesheet" href="admin/assets/css/ebazar.style.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
 <body>
+    <?php
+    if(isset($_SESSION['error'])) {
+        echo "<script type='text/javascript'>
+            toastr.warning('{$_SESSION['error']}');
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if(isset($_SESSION['success'])) {
+        echo "<script type='text/javascript'>
+            toastr.success('{$_SESSION['success']}');
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
     <div id="ebazar-layout" class="theme-blue">
         
         <!-- sidebar -->
         <div class="sidebar px-4 py-4 py-md-4 me-0">
             <div class="d-flex flex-column h-100">
-                <a href="index.html" class="mb-0 brand-icon">
+                <a href="index.php?act=admin" class="mb-0 brand-icon">
                     <span class="logo-icon">
-                        <i class="bi bi-bag-check-fill fs-4"></i>
+                        <img src="im" alt="">
                     </span>
                     <span class="logo-text">eBazar</span>
                 </a>
@@ -37,7 +54,7 @@
                             <!-- Menu: Sub menu ul -->
                             <ul class="sub-menu collapse" id="menu-product">
                                 <!-- <li><a class="ms-link" href="product-grid.html">Product Grid</a></li> -->
-                                <li><a class="ms-link" href="index.php?act=product-list">Product List</a></li>
+                                <li><a class="ms-link" href="index.php?act=product">Product List</a></li>
                                 <li><a class="ms-link" href="index.php?act=product-edit">Product Edit</a></li>
                                 <!-- <li><a class="ms-link" href="product-detail.html">Product Details</a></li> -->
                                 <li><a class="ms-link" href="index.php?act=product-create">Product Create</a></li>
