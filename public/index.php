@@ -1,18 +1,27 @@
 <?php
 session_start();
 require_once ('../controllers/admin/CategoryAdminController.php');
-$action=isset($_GET['act']) ? $_GET['act'] : 'index';
+
+require_once '../controllers/admin/ProductAdminController.php';
+
 $categoryAdmin = new CategoryAdminController();
+$productAdmin = new ProductAdminController();
+
+$action=isset($_GET['act']) ? $_GET['act'] : 'index';
+
 
 switch($action){
     case 'admin':
     include '../views/admin/index.php';
     break;
-    case 'product-list':
-    include '../views/admin/product/list.php';
+    case 'product':
+    $productAdmin->index();
     break;
     case 'product-create':
-    include '../views/admin/product/create.php';
+    $productAdmin->create();
+    break;
+    case 'product-store':
+    $productAdmin->store();
     break;
     case 'product-edit':
     include '../views/admin/product/edit.php';
