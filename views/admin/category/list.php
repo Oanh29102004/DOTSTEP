@@ -36,12 +36,13 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><?= $cate['status'] ?></td>
+                                        <td><span class="badge bg-success"><?= $cate['status'] ?></span></td>
+                                        
                                         <td>
                                             <div class="d-flex gap-2">
-                                                <a href="index.php?act=category-detail&id=<?= $cate['category_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-eye text-success"></i></a>
+                                                <a href="index.php?act=category-detail&id=<?= $cate['category_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-eye text-info"></i></a>
                                                 <a href="index.php?act=category-edit&id=<?= $cate['category_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                <a onclick="return confirm('Bạn chắn chắn muốn xóa k?')" href="index.php?act=category-delete&id= <?= $cate['category_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-trash text-success"></i></a>
+                                                <a onclick="return confirm('Bạn chắn chắn muốn xóa k?')" href="index.php?act=category-delete&id= <?= $cate['category_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-trash text-danger"></i></a>
 
                                             </div>
                                         </td>

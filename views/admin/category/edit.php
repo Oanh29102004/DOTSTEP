@@ -4,7 +4,7 @@
 
         <div class="row align-items-center">
             <div class="border-0 mb-4">
-                <h3 class="fw-bold mb-0">Thêm danh mục</h3>
+                <h3 class="fw-bold mb-0">Cập nhật danh mục</h3>
 
 
             </div>
@@ -40,7 +40,7 @@
                                     <div class="col-lg-6">
                                         <label for="crater" class="form-label">Trạng thái</label>
 
-                                        <select id="crater" name="status">
+                                        <select id="crater" name="status" class="form-control">
                                             <option value="">Chọn trạng thái </option>
                                             <option value="Hidden" <?= $getCategory['status'] == 'Hidden' ? 'selected' : '' ?>>Ẩn </option>
                                             <option value="Active" <?= $getCategory['status'] == 'Active' ? 'selected' : '' ?>>Hiện</option>
@@ -49,6 +49,7 @@
                                     <?php if (isset($_SESSION['errors']['status'])) : ?>
                                         <p class="text-danger"><?= $_SESSION['errors']['status']  ?></p>
                                     <?php endif; ?>
+
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mb-0">
@@ -61,15 +62,12 @@
                                 </div>
                             </div>
                             <div class="p-3 bg -light mb-3 rounded">
-                                <div class="row justify-content-end g-2">
-                                    <div class="col-lg-2">
-                                        <button type="submit" name="updateCategory" class="btn btn-primary me-1">Cập nhật</button>
+                                <div class="col-md-6">
+                                    <button type="submit" name="updateCategory" class="btn btn-primary py-2 px-5 text-uppercase btn-set-task w-sm-100">Cập nhật</button>
+                                    <a href="index.php?act=category-list" class="btn btn-dark py-2 px-5 text-uppercase btn-set-task w-sm-100">Quay lại</a>
 
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <a href="index.php?act=category-list" class="btn btn-secondary ">Quay lại</a>
-                                    </div>
                                 </div>
+
 
                             </div>
                         </div>
