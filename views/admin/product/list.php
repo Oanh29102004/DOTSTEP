@@ -43,7 +43,7 @@
                                     <td>
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
-                                                <img src="admin/assets/images/product/product-1.jpg" alt="" class="w120 rounded img-fluid">
+                                                <img src="./images/product/<?= $product['product_image'] ?>" alt="" class="w120 rounded img-fluid">
                                             </div>
                                             <div>
                                                 <a href="#!" class="text-dark fw-medium fs-15"><?=$product['product_name']?></a>
@@ -61,12 +61,13 @@
                                         </div>
                                     </td>
                                     <td><?= $product['category_name'] ?></td>
-                                    <td><?= $product['product_price'] ?></td>
-                                    <td><?= $product['product_sale_price'] ?></td>
+                                    <td><?= number_format($product['product_price'] *1000 , 0, ',' , '.')  ?> đ</td>
+                                    <td><?= number_format($product['product_sale_price'] *1000 , 0, ',' , '.')?> đ</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                            <a href="products-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                            <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                            <a href="?act=product-detail&id=<?= $product['product_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-eye text-info"></i></a>
+                                            <a href="?act=product-edit&id=<?= $product['product_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
+                                            <a onclick="return confirm('Bạn chắn chắn muốn xóa k?')" href="?act=product-delete&id= <?= $product['product_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-trash text-danger"></i></a>
                                         </div>
                                     </td>
                                 </tr>
