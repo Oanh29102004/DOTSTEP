@@ -21,7 +21,6 @@
                 <?php endif; ?>
             </div>
             <div class="row g-3 mb-3">
-
                 <div class="col-xl-12 col-lg-12">
                     <div class="card mb-3">
                         <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">

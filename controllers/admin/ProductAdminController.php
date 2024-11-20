@@ -4,6 +4,10 @@ class ProductAdminController extends Product
 {
     public function index()
     {
+        $listProduct = $this->listProduct ();
+        // echo '<pre>';
+        // print_r($listProduct);
+        // echo '<pre>';
         include '../views/admin/product/list.php';
     }
     public function create()
