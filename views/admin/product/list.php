@@ -65,7 +65,7 @@
                                     <td><?= $product['product_sale_price'] ?></td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                            <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
+                                            <a href="products-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
                                             <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
                                         </div>
                                     </td>
