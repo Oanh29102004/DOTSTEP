@@ -80,4 +80,58 @@ class Product extends connect{
         }
         return $groupedProducts;
     }
+    public function getProductById($product_id){
+        $sql = "SELECT
+        products.product_id as product_id,
+        products.name as product_name,
+        products.price as product_price,
+        products.sale_price as product_sale_price,
+        products.image as product_image,
+        products.description as product_description,
+        products.slug as product_slug,
+        categorys.category_id as category_id,
+        categorys.name as category_name
+        FROM products
+        left join categorys on products.category_id = categorys.category_id 
+        where products.product_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$product_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function getProductVariantById($product_id){
+        $sql = "SELECT
+        product_variants.product_variant_id as product_variant_id,
+        product_variants.price as variant_price,
+        product_variants.sale_price as variant_sale_price,
+        product_variants.quantity as variant_quantity,
+        colors.color_id as color_id,
+        sizes.size_id as size_id,
+        colors.color_name as color_name,
+        sizes.size_name as size_name
+        FROM product_variants
+        left join colors on product_variants.color_id = colors.color_id 
+        left join sizes on product_variants.size_id = sizes.size_id 
+        where product_variants.product_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$product_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getProductGalleryById($product_id){
+        $sql = 'SELECT * FROM product_galleries where product_id = ?';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$product_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    //cap nhat
+    public function updateProduct($product_id,$category_id,$name,$image,$price,$sale_price,$slug,$description){
+        $sql = 'UPDATE products SET category_id=?, name=?, image=?, price=?, sale_price=?, slug=?, description=? WHERE product_id=?';
+        $stmt = $this->connect()->prepare($sql);
+        return $stmt->execute([$category_id,$name,$image,$price,$sale_price,$slug,$description,$product_id]);
+    }    
+    public function updateProductVariant($product_variant_id,$price,$sale_price,$quantity,$product_id,$color_id,$size_id) {
+        $sql = 'UPDATE product_variants SET price=?,sale_price=?,quantity=?,product_id=?,color_id=?,size_id=? WHERE product_variant_id=?';
+        $stmt = $this->connect()->prepare($sql);
+        return $stmt->execute([$price,$sale_price,$quantity,$product_id,$color_id,$size_id,$product_variant_id]);
+    }
 }
