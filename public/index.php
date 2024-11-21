@@ -19,8 +19,12 @@ switch($action){
     $productAdmin->store();
     break;
     case 'product-edit':
-    include '../views/admin/product/edit.php';
+    $productAdmin->edit();
     break;
+    case 'product-update':
+    $productAdmin->update();
+    break;
+
     case 'category-list':
         $categoryAdmin -> index();
     break;

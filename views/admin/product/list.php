@@ -54,7 +54,7 @@
                                                 </p>
                                                 <p class="text-muted mb-0 mt-1 fs-13"><span>Color : </span>
                                                     <?php foreach ($product['variants'] as $color) : ?>
-                                                        <span><?= $size['product_variant_color'] ?></span>
+                                                        <span><?= $color['product_variant_color'] ?></span>
                                                     <?php endforeach ?>                                        
                                                 </p>
                                             </div>
@@ -67,7 +67,7 @@
                                         <div class="btn-group" role="group" aria-label="Basic outlined example">
                                             <a href="?act=product-detail&id=<?= $product['product_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-eye text-info"></i></a>
                                             <a href="?act=product-edit&id=<?= $product['product_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                            <a onclick="return confirm('Bạn chắn chắn muốn xóa k?')" href="?act=product-delete&id= <?= $product['product_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-trash text-danger"></i></a>
+                                            <a onclick="return confirm('Bạn chắn chắn muốn xóa k?')" href="?act=product-delete&id=<?= $product['product_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-trash text-danger"></i></a>
                                         </div>
                                     </td>
                                 </tr>
