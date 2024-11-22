@@ -1,0 +1,23 @@
+.image_gallery_container {
+    position: relative;
+    display: inline-block;
+}
+.remote_gallery {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ccc;
+    cursor: pointer;
+    display: none;
+}
+.image_gallery_container:hover .remote_gallery{
+    display: inline-block;
+    font-size: 4rem;
+    font-weight: 800;
+    z-index: 1;
+}
+.image_gallery_container:hover img {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}

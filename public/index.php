@@ -1,52 +1,67 @@
 <?php
 session_start();
-require_once ('../controllers/admin/CategoryAdminController.php');
+require_once('../controllers/admin/CategoryAdminController.php');
 
 require_once '../controllers/admin/ProductAdminController.php';
+
+require_once '../controllers/client/HomeController.php';
 
 $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
 
-$action=isset($_GET['act']) ? $_GET['act'] : 'index';
+$home = new HomeController();
+
+$action = isset($_GET['act']) ? $_GET['act'] : 'index';
 
 
-switch($action){
+switch ($action) {
     case 'admin':
-    include '../views/admin/index.php';
-    break;
+        include '../views/admin/index.php';
+        break;
     case 'product':
-    $productAdmin->index();
-    break;
+        $productAdmin->index();
+        break;
     case 'product-create':
-    $productAdmin->create();
-    break;
+        $productAdmin->create();
+        break;
     case 'product-store':
-    $productAdmin->store();
-    break;
+        $productAdmin->store();
+        break;
     case 'product-edit':
-    $productAdmin->edit();
-    break;
+        $productAdmin->edit();
+        break;
     case 'product-update':
-    $productAdmin->update();
-    break;
-
+        $productAdmin->update();
+        break;
+    case 'gallery-delete':
+        $productAdmin->deleteGallery();
+        break;
+    case 'product-variant-delete':
+        $productAdmin->deleteProductVariant();
+        break;
+    case 'product-delete':
+        $productAdmin->deleteProduct();
+        break;
     case 'category-list':
-        $categoryAdmin -> index();
-    break;
+        $categoryAdmin->index();
+        break;
     case 'category-create':
-        $categoryAdmin -> addCategory();
-    break;
+        $categoryAdmin->addCategory();
+        break;
     case 'category-edit':
-        $categoryAdmin ->updateCategory();
-    break;
+        $categoryAdmin->updateCategory();
+        break;
     case 'category-delete':
-        $categoryAdmin ->deleteCategory();
-    break;
-//================================================
+        $categoryAdmin->deleteCategory();
+        break;
+        //================================================
     case 'index':
-    include '../views/client/index.php';
-    break;
+        $home->index();
+        break;
     case 'login_register':
-    include '../views/client/auth/login_register.php';
-    break;
+        include '../views/client/auth/login_register.php';
+        break;
+    case 'product-detail':
+        $home->getProductDetail();
+        break;
 }
