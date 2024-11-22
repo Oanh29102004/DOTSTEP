@@ -111,122 +111,22 @@
         <li class="nav-item" role="presentation">
           <a class="nav-link nav-link_underscore active" id="collections-tab-1-trigger" data-bs-toggle="tab" href="#collections-tab-1" role="tab" aria-controls="collections-tab-1" aria-selected="true">All</a>
         </li>
+        <?php foreach($category as $cate): ?>
         <li class="nav-item" role="presentation">
-          <a class="nav-link nav-link_underscore" id="collections-tab-2-trigger" data-bs-toggle="tab" href="#collections-tab-2" role="tab" aria-controls="collections-tab-2" aria-selected="true">Women</a>
+          <a class="nav-link nav-link_underscore" id="collections-tab-2-trigger" data-bs-toggle="tab" href="#collections-tab-2" role="tab" aria-controls="collections-tab-2" aria-selected="true"><?= $cate['name'] ?></a>
         </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link nav-link_underscore" id="collections-tab-3-trigger" data-bs-toggle="tab" href="#collections-tab-3" role="tab" aria-controls="collections-tab-3" aria-selected="true">Men</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link nav-link_underscore" id="collections-tab-4-trigger" data-bs-toggle="tab" href="#collections-tab-4" role="tab" aria-controls="collections-tab-4" aria-selected="true">Kids</a>
-        </li>
+        <?php endforeach;?>
       </ul>
 
       <div class="tab-content pt-2" id="collections-tab-content">
         <div class="tab-pane fade show active" id="collections-tab-1" role="tabpanel" aria-labelledby="collections-tab-1-trigger">
           <div class="row">
+          <?php foreach($product as $pro): ?>
             <div class="col-6 col-md-4 col-lg-3">
               <div class="product-card mb-3 mb-md-4 mb-xxl-5">
                 <div class="pc__img-wrapper">
-                  <a href="product1_simple.html">
-                    <img loading="lazy" src="client/images/home/demo4/product-1-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                    <img loading="lazy" src="client/images/home/demo4/product-1-2.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                  </a>
-                  <div class="anim_appear-bottom position-absolute w-100 text-center mb-3">
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">
-                      <svg class="d-inline-block" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-quick-view" data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                      <svg class="d-inline-block" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase js-add-wishlist" title="Add To Wishlist">
-                      <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pc__info position-relative">
-                  <p class="pc__category">Dresses</p>
-                  <h6 class="pc__title"><a href="product1_simple.html">Cropped Faux Leather Jacket</a></h6>
-                  <div class="product-card__price d-flex">
-                    <span class="money price">$29</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-                <div class="pc__img-wrapper">
-                  <a href="product1_simple.html">
-                    <img loading="lazy" src="client/images/home/demo4/product-2-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                    <img loading="lazy" src="client/images/home/demo4/product-2-2.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                  </a>
-                  <div class="product-label text-uppercase bg-white top-0 left-0 mt-2 mx-2">New</div>
-                  <div class="anim_appear-bottom position-absolute w-100 text-center mb-3">
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">
-                      <svg class="d-inline-block" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-quick-view" data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                      <svg class="d-inline-block" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase js-add-wishlist" title="Add To Wishlist">
-                      <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pc__info position-relative">
-                  <p class="pc__category">Dresses</p>
-                  <h6 class="pc__title"><a href="product1_simple.html">Calvin Shorts</a></h6>
-                  <div class="product-card__price d-flex">
-                    <span class="money price">$62</span>
-                  </div>
-                  <div class="d-flex align-items-center mt-1">
-                    <a href="#" class="swatch-color pc__swatch-color" style="color: #222222"></a>
-                    <a href="#" class="swatch-color swatch_active pc__swatch-color" style="color: #b9a16b"></a>
-                    <a href="#" class="swatch-color pc__swatch-color" style="color: #f5e6e0"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-                <div class="pc__img-wrapper">
-                  <a href="product1_simple.html">
-                    <img loading="lazy" src="client/images/home/demo4/product-3-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                    <img loading="lazy" src="client/images/home/demo4/product-3-2.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                  </a>
-                  <div class="anim_appear-bottom position-absolute w-100 text-center mb-3">
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">
-                      <svg class="d-inline-block" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-quick-view" data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                      <svg class="d-inline-block" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase js-add-wishlist" title="Add To Wishlist">
-                      <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pc__info position-relative">
-                  <p class="pc__category">Dresses</p>
-                  <h6 class="pc__title"><a href="product1_simple.html">Kirby T-Shirt</a></h6>
-                  <div class="product-card__price d-flex">
-                    <span class="money price">$17</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-                <div class="pc__img-wrapper">
-                  <a href="product1_simple.html">
-                    <img loading="lazy" src="client/images/home/demo4/product-4-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                    <img loading="lazy" src="client/images/home/demo4/product-4-2.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
+                  <a href="?act=product-detail&slug=<?= $pro['product_slug'] ?>">
+                    <img loading="lazy" src="./images/product/<?= $pro['product_image'] ?>" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                   </a>
                   <div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-67%</div>
                   <div class="anim_appear-bottom position-absolute w-100 text-center mb-3">
@@ -243,137 +143,16 @@
                 </div>
 
                 <div class="pc__info position-relative">
-                  <p class="pc__category">Dresses</p>
-                  <h6 class="pc__title"><a href="product1_simple.html">Cableknit Shawl</a></h6>
+                  <p class="pc__category"><?= $pro['category_name'] ?></p>
+                  <h6 class="pc__title"><a href="product1_simple.html"><?= $pro['product_name'] ?></a></h6>
                   <div class="product-card__price d-flex">
-                    <span class="money price price-old">$129</span>
-                    <span class="money price price-sale">$99</span>
+                    <span class="money price price-old">$<?= $pro['product_price'] ?></span>
+                    <span class="money price price-sale">$<?= $pro['product_sale_price'] ?></span>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-                <div class="pc__img-wrapper">
-                  <a href="product1_simple.html">
-                    <img loading="lazy" src="client/images/home/demo4/product-5-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                    <img loading="lazy" src="client/images/home/demo4/product-5-2.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                  </a>
-                  <div class="product-label text-uppercase bg-black text-white top-0 left-0 mt-2 mx-2">Sale</div>
-                  <div class="anim_appear-bottom position-absolute w-100 text-center mb-3">
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">
-                      <svg class="d-inline-block" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-quick-view" data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                      <svg class="d-inline-block" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase js-add-wishlist" title="Add To Wishlist">
-                      <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pc__info position-relative">
-                  <p class="pc__category">Dresses</p>
-                  <h6 class="pc__title"><a href="product1_simple.html">Colorful Jacket</a></h6>
-                  <div class="product-card__price d-flex">
-                    <span class="money price">$29</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-                <div class="pc__img-wrapper">
-                  <a href="product1_simple.html">
-                    <img loading="lazy" src="client/images/home/demo4/product-6-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                    <img loading="lazy" src="client/images/home/demo4/product-6-2.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                  </a>
-                  <div class="anim_appear-bottom position-absolute w-100 text-center mb-3">
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">
-                      <svg class="d-inline-block" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-quick-view" data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                      <svg class="d-inline-block" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase js-add-wishlist" title="Add To Wishlist">
-                      <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pc__info position-relative">
-                  <p class="pc__category">Dresses</p>
-                  <h6 class="pc__title"><a href="product1_simple.html">Shirt In Botanical Cheetah Print</a></h6>
-                  <div class="product-card__price d-flex">
-                    <span class="money price">$62</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-                <div class="pc__img-wrapper">
-                  <a href="product1_simple.html">
-                    <img loading="lazy" src="client/images/home/demo4/product-7-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                    <img loading="lazy" src="client/images/home/demo4/product-7-2.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                  </a>
-                  <div class="anim_appear-bottom position-absolute w-100 text-center mb-3">
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">
-                      <svg class="d-inline-block" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-quick-view" data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                      <svg class="d-inline-block" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase js-add-wishlist" title="Add To Wishlist">
-                      <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pc__info position-relative">
-                  <p class="pc__category">Dresses</p>
-                  <h6 class="pc__title"><a href="product1_simple.html">Cotton Jersey T-Shirt</a></h6>
-                  <div class="product-card__price d-flex">
-                    <span class="money price">$17</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="product-card mb-3 mb-md-4 mb-xxl-5">
-                <div class="pc__img-wrapper">
-                  <a href="product1_simple.html">
-                    <img loading="lazy" src="client/images/home/demo4/product-8-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                    <img loading="lazy" src="client/images/home/demo4/product-8-2.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                  </a>
-                  <div class="anim_appear-bottom position-absolute w-100 text-center mb-3">
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">
-                      <svg class="d-inline-block" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-quick-view" data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                      <svg class="d-inline-block" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><use href="#icon_view" /></svg>
-                    </button>
-                    <button class="btn btn-round btn-hover-red border-0 text-uppercase js-add-wishlist" title="Add To Wishlist">
-                      <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="pc__info position-relative">
-                  <p class="pc__category">Dresses</p>
-                  <h6 class="pc__title"><a href="product1_simple.html">Zessi Dresses</a></h6>
-                  <div class="product-card__price d-flex">
-                    <span class="money price price-old">$129</span>
-                    <span class="money price price-sale">$99</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <?php endforeach; ?>
           </div><!-- /.row -->
           <div class="text-center mt-2">
             <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="shop1.html">See All Products</a>

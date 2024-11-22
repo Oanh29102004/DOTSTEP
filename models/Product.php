@@ -47,6 +47,7 @@ class Product extends connect{
         products.price as product_price,
         products.sale_price as product_sale_price,
         products.image as product_image,
+        products.slug as product_slug,
         categorys.category_id as category_id,
         categorys.name as category_name,
         product_variants.product_variant_id as product_variant_id,
@@ -117,10 +118,10 @@ class Product extends connect{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProductGalleryById($product_id){
+    public function getProductGalleryById(){
         $sql = 'SELECT * FROM product_galleries where product_id = ?';
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$product_id]);
+        $stmt->execute([$_GET['id']]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     //cap nhat
@@ -133,5 +134,85 @@ class Product extends connect{
         $sql = 'UPDATE product_variants SET price=?,sale_price=?,quantity=?,product_id=?,color_id=?,size_id=? WHERE product_variant_id=?';
         $stmt = $this->connect()->prepare($sql);
         return $stmt->execute([$price,$sale_price,$quantity,$product_id,$color_id,$size_id,$product_variant_id]);
+    }
+    public function getProductBySlug($slug){
+        $sql = "SELECT
+        products.product_id as product_id,
+        products.name as product_name,
+        products.price as product_price,
+        products.sale_price as product_sale_price,
+        products.image as product_image,
+        products.description as product_description,
+        products.slug as product_slug,
+        categorys.category_id as category_id,
+        categorys.name as category_name,
+        product_variants.product_variant_id as product_variant_id,
+        product_variants.price as variant_price,
+        product_variants.sale_price as variant_sale_price,
+        product_variants.quantity as variant_quantity,
+        colors.color_name as color_name,
+        sizes.size_name as size_name,
+        product_galleries.image as product_gallery_image
+        
+        FROM products
+        left join categorys on products.category_id = categorys.category_id 
+        left join product_variants on products.product_id = product_variants.product_id
+        left join product_galleries on products.product_id = product_galleries.product_id
+        left join colors on product_variants.color_id = colors.color_id 
+        left join sizes on product_variants.size_id = sizes.size_id 
+        where products.slug = ? 
+        ";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$slug]);
+        $product= $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $groupedProducts = [];
+        // Lặp qua từng sản phẩm trong danh sách list product
+        
+            if(!isset($groupedProducts[$product['product_id']])){
+                $groupedProducts[$product['product_id']] = $product ;           
+                $groupedProducts[$product['product_id']]['variants'] = [];
+            }
+            //Thêm các biến thể color size ... variant[]
+            $groupedProducts[$product['product_id']]['variants'][] = [
+                'product_id' => $product['product_id'],
+                'product_variant_color' => $product['color_name'],
+                'product_variant_size' => $product['size_name'],
+                'product_variant_price' => $product['variant_price'],
+                'product_variant_sale_price' => $product['variant_sale_price'],
+                'product_variant_quantity' => $product['variant_quantity']
+
+            ];
+        
+        if(!empty($product['product_gallery_image'])){
+            $groupedProducts[$product['product_id']]['product_gallery_image'] = $product['product_gallery_image'];
+        }
+        return $groupedProducts;
+    }
+    
+    public function removeGallery(){
+        $sql = "DELETE FROM product_galleries WHERE product_gallery_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        return $stmt->execute([$_GET['gallery_id']]);
+    }
+
+    public function getGallery()
+    {
+        $sql = "SELECT image FROM product_galleries WHERE product_gallery_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$_GET['gallery_id']]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function removeProductVariant(){
+        $sql = "DELETE FROM product_variants WHERE product_variant_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        return $stmt->execute([$_GET['variant_id']]);
+    }
+
+    public function removeProduct(){
+        $sql = "DELETE FROM products WHERE product_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        return $stmt->execute([$_GET['id']]);
     }
 }

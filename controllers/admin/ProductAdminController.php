@@ -121,7 +121,7 @@ class ProductAdminController extends Product
     {
         $product = $this->getProductById($_GET['id']);
         $variants = $this->getProductVariantById($_GET['id']);
-        $gallery = $this->getProductGalleryById($_GET['id']);
+        $gallery = $this->getProductGalleryById();
         $listCategorys = $this->getAllCategory();
         $listColors = $this->getAllColor();
         $listSizes = $this->getAllSize();
@@ -252,6 +252,59 @@ class ProductAdminController extends Product
                 header('Location:' . $_SERVER['HTTP_REFERER']);
                 exit();
             }
+        }
+    }
+
+    public function deleteGallery()
+    {
+        try {
+            $gallery = $this->getGallery();
+
+            if (file_exists('./images/product_gallery/' . $gallery['image'])) {
+                unlink('./images/product_gallery/' . $gallery['image']);
+            }
+            $this->removeGallery();
+            $_SESSION['success'] = 'Xóa ảnh khỏi kho lưu trữ thành công';
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+            exit();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+    }
+
+    public function deleteProductVariant()
+    {
+        try {
+            $this->removeProductVariant();
+            $_SESSION['success'] = 'Xóa biến thể thành công';
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+            exit();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+    }
+
+    public function deleteProduct()
+    {
+        try {
+            $galleries = $this->getProductGalleryById();
+            foreach ($galleries as $gallery) {
+                if (file_exists('./images/product_gallery/' . $gallery['image'])) {
+                    unlink('./images/product_gallery/' . $gallery['image']);
+                }
+            }
+            $this->removeProduct();
+            $_SESSION['success'] = 'Xóa biến thể thành công';
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+            exit();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+            exit();
         }
     }
 }

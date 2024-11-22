@@ -16,9 +16,12 @@
                 </div>
                 <div class="card-body">
                     <?php foreach ($gallery as $value) : ?>
-                        <img src="./images/product_gallery/<?= $value['image'] ?>" alt="" width="100px" class="src">
+                        <div class="image_gallery_container">
+                            <a href="?act=gallery-delete&gallery_id=<?= $value['product_gallery_id'] ?>" class="remote_gallery"><i class="icofont-trash text-danger"></i></a>
+                            <img src="./images/product_gallery/<?= $value['image'] ?>" alt="" width="100px" class="mb-1 mx-1">
 
-                        <input type="file" hidden name="old_gallery_image[]" value="<?= $value['image'] ?>" id="" class="form-control" >
+                            <input type="file" hidden name="old_gallery_image[]" value="<?= $value['image'] ?>" id="" class="form-control">
+                        </div>
                     <?php endforeach; ?>
                     <input type="file" name="gallery_image[]" class="form-control" multiple>
                     <?php if (isset($_SESSION['errors']['gallery_image'])) : ?>
@@ -95,6 +98,7 @@
                             <div id="variants">
                                 <?php foreach ($variants as $key => $value) : ?>
                                     <div class="row mb-4 mt-3 border rounded px-2 ">
+                                        <a href="?act=product-variant-delete&variant_id=<?= $value['product_variant_id'] ?>" class="d-flex justify-content-end mt-3"><i class="icofont-trash text-danger"></i></a>
                                         <div class="col-lg-4">
                                             <div class="mt-3 mb-3">
                                                 <input type="text" hidden name="product_variant_id[]" value="<?= $value['product_variant_id'] ?>" id="">
@@ -207,7 +211,7 @@
 
         newVariant.innerHTML = `
                 <div class="row mb-4 mt-3 border rounded px-2 ">
-
+                        <a href="" class="d-flex justify-content-end mt-3"><i class="icofont-trash text-danger"></i></a>
                                     <div class="col-lg-4">
                                         <div class="mt-3 mb-3">
                                             <label class="form-label">Kích thước :</label>
