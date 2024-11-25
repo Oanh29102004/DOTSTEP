@@ -224,11 +224,7 @@
                             </div>
                             <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                                 <div class="u-info me-2">
-                                    <<<<<<< HEAD
                                         <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
-                                        =======
-                                        <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">Ngô Thành-PH49043</span></p>
-                                        >>>>>>> 189eb44 (feat: login register)
                                         <small>Admin Profile</small>
                                 </div>
                                 <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">

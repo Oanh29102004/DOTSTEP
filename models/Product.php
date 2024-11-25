@@ -126,11 +126,11 @@ class Product extends connect
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProductGalleryById($product_id)
+    public function getProductGalleryById()
     {
         $sql = 'SELECT * FROM product_galleries where product_id = ?';
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$product_id]);
+        $stmt->execute([$_GET['id']]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     //cap nhat
