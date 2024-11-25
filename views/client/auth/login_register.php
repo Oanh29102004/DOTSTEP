@@ -94,4 +94,6 @@
 <div class="mb-5 pb-xl-5"></div>
 <?php
 unset($_SESSION['errors']);
+
 include '../views/client/layout/footer.php' ?>       
+

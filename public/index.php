@@ -1,10 +1,9 @@
 <?php
 session_start();
 require_once('../controllers/admin/CategoryAdminController.php');
-
-require_once '../controllers/admin/ProductAdminController.php';
-
-require_once '../controllers/client/HomeController.php';
+require_once('../controllers/admin/ProductAdminController.php');
+require_once('../controllers/client/AuthController.php');
+require_once('../controllers/client/HomeController.php');
 
 require_once '../controllers/client/AuthController.php';
 
@@ -14,11 +13,11 @@ $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
 
 $home = new HomeController();
+$auth = new AuthController();
 
 $auth = new AuthController();
 
 $action = isset($_GET['act']) ? $_GET['act'] : 'index';
-
 
 switch ($action) {
     case 'admin':
@@ -60,7 +59,6 @@ switch ($action) {
     case 'category-delete':
         $categoryAdmin->deleteCategory();
         break;
-        //================================================
     case 'index':
         $home->index();
         break;
@@ -76,5 +74,11 @@ switch ($action) {
 
     case 'product-detail':
         $home->getProductDetail();
+        break;
+    case 'register':
+        $auth->registers();
+        break;
+    case 'login':
+        $auth->signin();
         break;
 }
