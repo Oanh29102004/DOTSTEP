@@ -126,7 +126,11 @@ class Product extends connect
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    public function getProductGalleryById()
+
     public function getProductGalleryById($product_id)
+
     {
         $sql = 'SELECT * FROM product_galleries where product_id = ?';
         $stmt = $this->connect()->prepare($sql);
@@ -163,6 +167,7 @@ class Product extends connect
         product_variants.sale_price as variant_sale_price,
         product_variants.quantity as variant_quantity,
         colors.color_name as color_name,
+        colors.color_code as color_code,
         sizes.size_name as size_name,
         product_galleries.image as product_gallery_image
         
@@ -176,6 +181,42 @@ class Product extends connect
         ";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$slug]);
+
+        $listProduct = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $groupedProducts = [];
+        // Lặp qua từng sản phẩm trong danh sách list product
+        foreach ($listProduct as $product) {
+            if (!isset($groupedProducts[$product['product_id']])) {
+                $groupedProducts[$product['product_id']] = $product;
+                $groupedProducts[$product['product_id']]['variants'] = [];
+            }
+            //kiểm tra biên thể đã có trong mảng hay chưa
+            $exists = false;
+            foreach ($groupedProducts[$product['product_id']]['variants'] as $variant) {
+                if ($variant['color_name'] = $product['color_name'] &&
+                    $variant['size_name'] = $product['size_name']
+                ) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if(!$exists){
+                //Thêm các biến thể color size ... variant[]
+                $groupedProducts[$product['product_id']]['variants'][] = [
+                    'product_variant_id' => $product['product_variant_id'],
+                    'product_variant_color' => $product['color_name'],
+                    'product_variant_color_code' => $product['color_code'],
+                    'product_variant_size' => $product['size_name'],
+                    'product_variant_price' => $product['variant_price'],
+                    'product_variant_sale_price' => $product['variant_sale_price'],
+                    'product_variant_quantity' => $product['variant_quantity']
+                ];
+            }
+            if (!empty($product['product_gallery_image'])) {
+                $groupedProducts[$product['product_id']]['galleries'] = $product['product_gallery_image'];
+            }
+
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $groupedProducts = [];
@@ -198,6 +239,7 @@ class Product extends connect
 
         if (!empty($product['product_gallery_image'])) {
             $groupedProducts[$product['product_id']]['product_gallery_image'] = $product['product_gallery_image'];
+
         }
         return $groupedProducts;
     }
