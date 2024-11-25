@@ -34,9 +34,7 @@
 </head>
 
 <body>
-
   <?php
-
   if (isset($_SESSION['error'])) {
     echo "<script type='text/javascript'>
             toastr.warning('{$_SESSION['error']}');
