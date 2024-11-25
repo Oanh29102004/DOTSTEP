@@ -22,6 +22,10 @@ class HomeController {
     public function getProductDetail() 
     {
         $productDetail = $this -> product -> getProductBySlug($_GET['slug']);
+        $productDetail = reset($productDetail);
+        // echo '<pre>';
+        // print_r($productDetail);
+        // echo '<pre>';
         include '../views/client/product/productDetail.php';
     }
 }
