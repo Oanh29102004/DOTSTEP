@@ -13,7 +13,8 @@ class AuthController extends User
             if (empty($_POST['email'])) {
                 $errors['email'] = 'Vui lòng nhập email';
             }
-            if (empty($_POST['password']) && strlen($_POST['password'])  < 6) {
+            if (empty($_POST['password']) || strlen($_POST['password'])  < 6) {
+
                 $errors['password'] = 'Vui lòng nhập Mật khẩu';
             }
             $_SESSION['errors'] = $errors;
@@ -63,4 +64,5 @@ class AuthController extends User
         }
         include '../views/client/auth/login_register.php';
     }
-}
+} 
+
