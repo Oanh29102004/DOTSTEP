@@ -121,7 +121,7 @@ class ProductAdminController extends Product
     {
         $product = $this->getProductById($_GET['id']);
         $variants = $this->getProductVariantById($_GET['id']);
-        $gallery = $this->getProductGalleryById();
+        $gallery = $this->getProductGalleryById($_GET['id']);
         $listCategorys = $this->getAllCategory();
         $listColors = $this->getAllColor();
         $listSizes = $this->getAllSize();

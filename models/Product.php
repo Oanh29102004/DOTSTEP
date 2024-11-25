@@ -126,11 +126,15 @@ class Product extends connect
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
     public function getProductGalleryById()
+
+    public function getProductGalleryById($product_id)
+
     {
         $sql = 'SELECT * FROM product_galleries where product_id = ?';
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$_GET['id']]);
+        $stmt->execute([$product_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     //cap nhat
@@ -177,6 +181,7 @@ class Product extends connect
         ";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$slug]);
+
         $listProduct = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $groupedProducts = [];
@@ -211,6 +216,30 @@ class Product extends connect
             if (!empty($product['product_gallery_image'])) {
                 $groupedProducts[$product['product_id']]['galleries'] = $product['product_gallery_image'];
             }
+
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $groupedProducts = [];
+        // Lặp qua từng sản phẩm trong danh sách list product
+
+        if (!isset($groupedProducts[$product['product_id']])) {
+            $groupedProducts[$product['product_id']] = $product;
+            $groupedProducts[$product['product_id']]['variants'] = [];
+        }
+        //Thêm các biến thể color size ... variant[]
+        $groupedProducts[$product['product_id']]['variants'][] = [
+            'product_id' => $product['product_id'],
+            'product_variant_color' => $product['color_name'],
+            'product_variant_size' => $product['size_name'],
+            'product_variant_price' => $product['variant_price'],
+            'product_variant_sale_price' => $product['variant_sale_price'],
+            'product_variant_quantity' => $product['variant_quantity']
+
+        ];
+
+        if (!empty($product['product_gallery_image'])) {
+            $groupedProducts[$product['product_id']]['product_gallery_image'] = $product['product_gallery_image'];
+
         }
         return $groupedProducts;
     }

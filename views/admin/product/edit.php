@@ -98,72 +98,77 @@
                             <div id="variants">
                                 <?php foreach ($variants as $key => $value) : ?>
                                     <div class="row mb-4 mt-3 border rounded px-2 ">
-                                        <a href="?act=product-variant-delete&variant_id=<?= $value['product_variant_id'] ?>" class="d-flex justify-content-end mt-3"><i class="icofont-trash text-danger"></i></a>
-                                        <div class="col-lg-4">
-                                            <div class="mt-3 mb-3">
-                                                <input type="text" hidden name="product_variant_id[]" value="<?= $value['product_variant_id'] ?>" id="">
-                                                <label class="form-label">Kích thước :</label>
-                                                <div class="d-flex flex-wrap gap-2">
-                                                    <?php foreach ($listSizes as $size) : ?>
-                                                        <input class="btn-check" type="checkbox" id="size-<?= $size['size_id'] ?>-<?= $key ?>" name="variant_size[]"
-                                                            value="<?= $size['size_id'] ?>" <?= $value['size_id'] == $size['size_id'] ? 'checked' : '' ?>>
-                                                        <label class="btn btn-light avatar-sm rounded d-flex justify-content-center align-items-center" for="size-<?= $size['size_id'] ?>-<?= $key ?>"><?= $size['size_name'] ?></label>
-                                                    <?php endforeach; ?>
+                                        <<<<<<< HEAD
+                                            <a href="?act=product-variant-delete&variant_id=<?= $value['product_variant_id'] ?>" class="d-flex justify-content-end mt-3"><i class="icofont-trash text-danger"></i></a>
+                                            =======
+                                            <<<<<<< HEAD=======<a href="?act=product-variant-delete&variant_id=<?= $value['product_variant_id'] ?>" class="d-flex justify-content-end mt-3"><i class="icofont-trash text-danger"></i></a>
+                                                >>>>>>> 64ce2d4b5ef84d779ea454761b20cae48ea48da2
+                                                >>>>>>> 189eb44 (feat: login register)
+                                                <div class="col-lg-4">
+                                                    <div class="mt-3 mb-3">
+                                                        <input type="text" hidden name="product_variant_id[]" value="<?= $value['product_variant_id'] ?>" id="">
+                                                        <label class="form-label">Kích thước :</label>
+                                                        <div class="d-flex flex-wrap gap-2">
+                                                            <?php foreach ($listSizes as $size) : ?>
+                                                                <input class="btn-check" type="checkbox" id="size-<?= $size['size_id'] ?>-<?= $key ?>" name="variant_size[]"
+                                                                    value="<?= $size['size_id'] ?>" <?= $value['size_id'] == $size['size_id'] ? 'checked' : '' ?>>
+                                                                <label class="btn btn-light avatar-sm rounded d-flex justify-content-center align-items-center" for="size-<?= $size['size_id'] ?>-<?= $key ?>"><?= $size['size_name'] ?></label>
+                                                            <?php endforeach; ?>
+                                                        </div>
+                                                        <?php if (isset($_SESSION['errors']['variant_size'])) : ?>
+                                                            <p class="text-danger"><?= $_SESSION['errors']['variant_size'] ?></p>
+                                                        <?php endif; ?>
+                                                    </div>
                                                 </div>
-                                                <?php if (isset($_SESSION['errors']['variant_size'])) : ?>
-                                                    <p class="text-danger"><?= $_SESSION['errors']['variant_size'] ?></p>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-5">
-                                            <div class="mt-3 mb-3">
-                                                <label class="form-label">Màu sắc :</label>
-                                                <div class="d-flex flex-wrap gap-2">
-                                                    <?php foreach ($listColors as $color) : ?>
-                                                        <input type="checkbox" class="btn-check" id="color-<?= $color['color_id'] ?>-<?= $key ?>" name="variant_color[]"
-                                                            value="<?= $color['color_id'] ?>" <?= $value['color_id'] == $color['color_id'] ? 'checked' : '' ?>>
-                                                        <label class="btn btn-light avatar-sm rounded d-flex justify-content-center align-items-center" for="color-<?= $color['color_id'] ?>-<?= $key ?>">
-                                                            <i style="background-color: <?= $color['color_code'] ?>; color: <?= $color['color_code'] ?>">/////////|</i> </label>
-                                                    <?php endforeach; ?>
+                                                <div class="col-lg-5">
+                                                    <div class="mt-3 mb-3">
+                                                        <label class="form-label">Màu sắc :</label>
+                                                        <div class="d-flex flex-wrap gap-2">
+                                                            <?php foreach ($listColors as $color) : ?>
+                                                                <input type="checkbox" class="btn-check" id="color-<?= $color['color_id'] ?>-<?= $key ?>" name="variant_color[]"
+                                                                    value="<?= $color['color_id'] ?>" <?= $value['color_id'] == $color['color_id'] ? 'checked' : '' ?>>
+                                                                <label class="btn btn-light avatar-sm rounded d-flex justify-content-center align-items-center" for="color-<?= $color['color_id'] ?>-<?= $key ?>">
+                                                                    <i style="background-color: <?= $color['color_code'] ?>; color: <?= $color['color_code'] ?>">/////////|</i> </label>
+                                                            <?php endforeach; ?>
+                                                        </div>
+                                                        <?php if (isset($_SESSION['errors']['variant_color'])) : ?>
+                                                            <p class="text-danger"><?= $_SESSION['errors']['variant_color'] ?></p>
+                                                        <?php endif; ?>
+                                                    </div>
                                                 </div>
-                                                <?php if (isset($_SESSION['errors']['variant_color'])) : ?>
-                                                    <p class="text-danger"><?= $_SESSION['errors']['variant_color'] ?></p>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="mt-3 mb-3">
-                                                <label for="quantity" class="form-label">Số lượng</label>
-                                                <input id="quantity" name="variant_quantity[]" placeholder="Nhập số lượng" value="<?= $value['variant_quantity'] ?>" type="text" class="form-control">
-                                                <?php if (isset($_SESSION['errors']['variant_quantity'])) : ?>
-                                                    <?php foreach (($_SESSION['errors']['variant_quantity']) as $variant_quantity) : ?>
-                                                        <p class="text-danger"><?= $variant_quantity ?></p>
-                                                    <?php endforeach; ?>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-2">
-                                                <label for="variant_price" class="form-label">Giá biến thể </label>
-                                                <input id="variant_price" name="variant_price[]" placeholder="Nhập giá sản phẩm biến thể" value="<?= $value['variant_price'] ?>" type="text" class="form-control">
-                                            </div>
-                                            <?php if (isset($_SESSION['errors']['variant_price'])) : ?>
-                                                <?php foreach (($_SESSION['errors']['variant_price']) as $variant_price) : ?>
-                                                    <p class="text-danger"><?= $variant_price ?></p>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-2">
-                                                <label for="variant_sale_price" class="form-label">Giá khuyến mãi biến thể</label>
-                                                <input id="variant_sale_price" name="variant_sale_price[]" placeholder="Nhập giá khuyến mãi sản phẩm biến thể" value="<?= $value['variant_sale_price'] ?>" type="text" class="form-control">
-                                            </div>
-                                            <?php if (isset($_SESSION['errors']['variant_sale_price'])) : ?>
-                                                <?php foreach (($_SESSION['errors']['variant_sale_price']) as $variant_sale_price) : ?>
-                                                    <p class="text-danger"><?= $variant_sale_price ?></p>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
-                                        </div>
+                                                <div class="col-lg-3">
+                                                    <div class="mt-3 mb-3">
+                                                        <label for="quantity" class="form-label">Số lượng</label>
+                                                        <input id="quantity" name="variant_quantity[]" placeholder="Nhập số lượng" value="<?= $value['variant_quantity'] ?>" type="text" class="form-control">
+                                                        <?php if (isset($_SESSION['errors']['variant_quantity'])) : ?>
+                                                            <?php foreach (($_SESSION['errors']['variant_quantity']) as $variant_quantity) : ?>
+                                                                <p class="text-danger"><?= $variant_quantity ?></p>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2">
+                                                        <label for="variant_price" class="form-label">Giá biến thể </label>
+                                                        <input id="variant_price" name="variant_price[]" placeholder="Nhập giá sản phẩm biến thể" value="<?= $value['variant_price'] ?>" type="text" class="form-control">
+                                                    </div>
+                                                    <?php if (isset($_SESSION['errors']['variant_price'])) : ?>
+                                                        <?php foreach (($_SESSION['errors']['variant_price']) as $variant_price) : ?>
+                                                            <p class="text-danger"><?= $variant_price ?></p>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2">
+                                                        <label for="variant_sale_price" class="form-label">Giá khuyến mãi biến thể</label>
+                                                        <input id="variant_sale_price" name="variant_sale_price[]" placeholder="Nhập giá khuyến mãi sản phẩm biến thể" value="<?= $value['variant_sale_price'] ?>" type="text" class="form-control">
+                                                    </div>
+                                                    <?php if (isset($_SESSION['errors']['variant_sale_price'])) : ?>
+                                                        <?php foreach (($_SESSION['errors']['variant_sale_price']) as $variant_sale_price) : ?>
+                                                            <p class="text-danger"><?= $variant_sale_price ?></p>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
+                                                </div>
 
                                     </div>
                                 <?php endforeach; ?>
@@ -211,7 +216,15 @@
 
         newVariant.innerHTML = `
                 <div class="row mb-4 mt-3 border rounded px-2 ">
+<<<<<<< HEAD
                         <a href="" class="d-flex justify-content-end mt-3"><i class="icofont-trash text-danger"></i></a>
+=======
+<<<<<<< HEAD
+
+=======
+                        <a href="" class="d-flex justify-content-end mt-3"><i class="icofont-trash text-danger"></i></a>
+>>>>>>> 64ce2d4b5ef84d779ea454761b20cae48ea48da2
+>>>>>>> 189eb44 (feat: login register)
                                     <div class="col-lg-4">
                                         <div class="mt-3 mb-3">
                                             <label class="form-label">Kích thước :</label>
