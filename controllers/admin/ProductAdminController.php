@@ -296,7 +296,7 @@ class ProductAdminController extends Product
                 if (file_exists('./images/product_gallery/' . $gallery['image'])) {
                     unlink('./images/product_gallery/' . $gallery['image']);
                 }
-            }
+            }   
             $this->removeProduct();
             $_SESSION['success'] = 'Xóa biến thể thành công';
             header('Location:' . $_SERVER['HTTP_REFERER']);
