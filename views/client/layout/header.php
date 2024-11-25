@@ -17,6 +17,9 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="client/css/plugins/swiper.min.css" type="text/css">
   <link rel="stylesheet" href="client/css/style.css" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,6 +33,20 @@
 </head>
 
 <body>
+<?php
+  if (isset($_SESSION['error'])) {
+    echo "<script type='text/javascript'>
+            toastr.warning('{$_SESSION['error']}');
+        </script>";
+    unset($_SESSION['error']);
+  }
+  if (isset($_SESSION['success'])) {
+    echo "<script type='text/javascript'>
+            toastr.success('{$_SESSION['success']}');
+        </script>";
+    unset($_SESSION['success']);
+  }
+  ?>
   <svg class="d-none">
     <symbol id="icon_nav" viewBox="0 0 25 18">
       <rect width="25" height="2"/><rect y="8" width="20" height="2"/><rect y="16" width="25" height="2"/>
