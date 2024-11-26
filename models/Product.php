@@ -185,12 +185,13 @@ class Product extends connect
             if (!isset($groupedProducts[$product['product_id']])) {
                 $groupedProducts[$product['product_id']] = $product;
                 $groupedProducts[$product['product_id']]['variants'] = [];
+                $groupedProducts[$product['product_id']]['galleries'] = [];
             }
             //kiểm tra biên thể đã có trong mảng hay chưa
             $exists = false;
             foreach ($groupedProducts[$product['product_id']]['variants'] as $variant) {
-                if ($variant['color_name'] = $product['color_name'] &&
-                    $variant['size_name'] = $product['size_name']
+                if ($variant['product_variant_color'] === $product['color_name'] &&
+                    $variant['product_variant_size'] === $product['size_name']
                 ) {
                     $exists = true;
                     break;
@@ -208,8 +209,13 @@ class Product extends connect
                     'product_variant_quantity' => $product['variant_quantity']
                 ];
             }
-            if (!empty($product['product_gallery_image'])) {
-                $groupedProducts[$product['product_id']]['galleries'] = $product['product_gallery_image'];
+            if (!isset($groupedProducts[$product['product_id']]['galleries'])) {
+                $groupedProducts[$product['product_id']]['galleries'] = [];
+            }
+            
+            if (!empty($product['product_gallery_image']) && 
+                !in_array($product['product_gallery_image'], $groupedProducts[$product['product_id']]['galleries'], true)) {
+                $groupedProducts[$product['product_id']]['galleries'][] = $product['product_gallery_image'];
             }
         }
         return $groupedProducts;
