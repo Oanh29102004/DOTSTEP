@@ -211,15 +211,8 @@
 
         newVariant.innerHTML = `
                 <div class="row mb-4 mt-3 border rounded px-2 ">
-<<<<<<< HEAD
-                        <a href="" class="d-flex justify-content-end mt-3"><i class="icofont-trash text-danger"></i></a>
-=======
-<<<<<<< HEAD
 
-=======
                         <a href="" class="d-flex justify-content-end mt-3"><i class="icofont-trash text-danger"></i></a>
->>>>>>> 64ce2d4b5ef84d779ea454761b20cae48ea48da2
->>>>>>> 189eb44 (feat: login register)
                                     <div class="col-lg-4">
                                         <div class="mt-3 mb-3">
                                             <label class="form-label">Kích thước :</label>
@@ -262,7 +255,7 @@
                                         </div>
                                     </div>
 
-                             </div>
+                 </div>
             `;
         container.appendChild(newVariant);
     })

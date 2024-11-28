@@ -68,4 +68,7 @@ switch ($action) {
     case 'login':
         $auth->signin();
         break;
+    case 'profile':
+        include '../views/client/profile/profile.php';
+        break;
 }

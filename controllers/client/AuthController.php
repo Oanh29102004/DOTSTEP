@@ -52,6 +52,7 @@ class AuthController extends User
             }
             $login = $this->login($_POST['email'],  $_POST['password']);
             if ($login) {
+                $_SESSION['user'] =$login; //Lưu thông tin người dùng đăng nhập vào session
                 $_SESSION['success'] = 'Đăng nhập thành công';
                 header('Location:index.php');
                 exit();

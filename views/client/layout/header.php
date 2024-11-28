@@ -404,7 +404,7 @@
             </li>
           </ul><!-- /.navigation__list -->
         </div><!-- /.overflow-hidden -->
-      </div><!-- /.container -->
+      </div>/.container
 
       <div class="border-top mt-auto pb-2">
         <div class="customer-links container mt-4 mb-2 pb-1">
@@ -613,7 +613,7 @@
           <li class="navigation__item">
             <a href="#" class="navigation__link">Pages</a>
             <ul class="default-menu list-unstyled">
-              <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">My Account</a></li>
+              <li class="sub-menu__item"><a href="?act=login" class="menu-link menu-link_us-s">My Account</a></li>
               <li class="sub-menu__item"><a href="login_register.html" class="menu-link menu-link_us-s">Login / Register</a></li>
               <li class="sub-menu__item"><a href="store_location.html" class="menu-link menu-link_us-s">Store Locator</a></li>
               <li class="sub-menu__item"><a href="lookbook.html" class="menu-link menu-link_us-s">Lookbook</a></li>
@@ -675,11 +675,22 @@
         </div><!-- /.header-tools__item hover-container -->
 
         <div class="header-tools__item hover-container">
-          <a class="header-tools__item js-open-aside" href="#" data-aside="customerForms">
+          <?php if(!isset($_SESSION['user'])) : ?>
+          <a class="header-tools__item js-open-aside" href="?act=login" data-aside="customerForms">
             <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <use href="#icon_user" />
             </svg>
           </a>
+          <?php else :?>
+            <a class="header-tools__item js-open-aside" href="?act=login" data-aside="customerForms">
+              
+            <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            
+              <use href="#icon_user" />
+            </svg>
+            
+          </a>
+          <?php endif; ?>
         </div>
 
         <a class="header-tools__item" href="account_wishlist.html">
