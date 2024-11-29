@@ -23,6 +23,7 @@ class AuthController extends User
             }
             $register = $this->register($_POST['name'], $_POST['email'], $_POST['password']);
             if ($register) {
+                
                 $_SESSION['success'] = 'Tạo tài khoản thành công. Vui lòng đăng nhập';
                 header('location: ?act=login');
                 exit();
@@ -52,6 +53,7 @@ class AuthController extends User
             }
             $login = $this->login($_POST['email'],  $_POST['password']);
             if ($login) {
+                $_SESSION['user'] = $login; //lưu thông tin người dùng đăng nhập
                 $_SESSION['success'] = 'Đăng nhập thành công';
                 header('Location:index.php');
                 exit();
