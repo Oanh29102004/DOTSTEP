@@ -73,10 +73,12 @@ switch ($action) {
     case 'profile':
         include '../views/client/profile/profile.php';
         break;
+
     case 'profileDetail':
         include '../views/client/profile/profileDetail.php';
         break;
     case 'update-profile':
         $profile ->  updateProfile(); 
         break;
+
 }

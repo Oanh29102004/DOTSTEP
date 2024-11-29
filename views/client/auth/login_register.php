@@ -47,7 +47,7 @@
 
             <div class="customer-option mt-4 text-center">
               <span class="text-secondary">No account yet?</span>
-              <a href="#register-tab" class="btn-text js-show-register">Create Account</a>
+              <a href="?act=register" class="btn-text js-show-register">Create Account</a>
             </div>
           </form>
         </div>

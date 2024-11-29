@@ -13,16 +13,16 @@
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 <?php foreach ($productDetail['galleries'] as $index => $gallery): ?>
-                                    
-                                        <div class="swiper-slide product-single__image-item">
-                                            <img loading="lazy" class="h-auto" src="./images/product_gallery/<?= $gallery ?>" width="674" height="674" alt="">
-                                            <a data-fancybox="gallery" href="./images/product_gallery/<?= $gallery ?>" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_zoom" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                
+
+                                    <div class="swiper-slide product-single__image-item">
+                                        <img loading="lazy" class="h-auto" src="./images/product_gallery/<?= $gallery ?>" width="674" height="674" alt="">
+                                        <a data-fancybox="gallery" href="./images/product_gallery/<?= $gallery ?>" data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <use href="#icon_zoom" />
+                                            </svg>
+                                        </a>
+                                    </div>
+
                                 <?php endforeach; ?>
                             </div>
                             <div class="swiper-button-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
@@ -86,8 +86,9 @@
                 </div>
                 <div class="product-single__price">
 
-                    <span class="current-price">$<?= $productDetail['variant_sale_price'] ?></span>
-                    <span class="money price price-old">$<?= $productDetail['variant_price'] ?></span>
+                    <span class="current-price price-variants">$<?= $productDetail['variant_sale_price'] ?></span>
+                    <span class="money price price-old sale-price-variants">$<?= $productDetail['variant_price'] ?></span>
+                    <input type="hidden" name="variant_id" id="variant_id">
                 </div>
                 <div class="product-single__short-desc">
                     <p><?= $productDetail['product_description'] ?></p>
@@ -96,25 +97,27 @@
                     <div class="product-single__swatches">
                         <div class="product-swatch text-swatches">
                             <label>Sizes</label>
-                            <div class="swatch-list">
+                            <div class="swatch-list btn-size">
                                 <?php foreach ($productDetail['variants'] as $index => $variant): ?>
-                                    <input type="radio" name="size" id="swatch-<?= $index; ?>" checked>
-                                    <label class="swatch js-swatch" for="swatch-<?= $index; ?>" aria-label="Extra Small" data-bs-toggle="tooltip" data-bs-placement="top"><?= $variant['product_variant_size'] ?></label>
+                                    <input type="radio" name="size" id="swatch-<?= $index; ?>" data-size="<?= $variant['product_variant_size'] ?>">
+                                    <label class="swatch js-swatch " for="swatch-<?= $index; ?>" aria-label="Extra Small" data-bs-toggle="tooltip" data-bs-placement="top"><?= $variant['product_variant_size'] ?></label>
                                 <?php endforeach; ?>
                             </div>
                             <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
                         </div>
                         <div class="product-swatch color-swatches">
                             <label>Color</label>
-                            <div class="swatch-list">
+                            <div class="swatch-list btn-color">
                                 <?php foreach ($productDetail['variants'] as $index => $variant): ?>
-                                    <input type="radio" name="color" id="swatch-<?= $index; ?>" checked>
+                                    <input type="radio" name="color" class id="swatch-<?= $index; ?>"  data-color="<?= $variant['product_variant_color_code'] ?>">
                                     <label class="swatch swatch-color js-swatch" for="swatch-<?= $index; ?>" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $variant['product_variant_color'] ?>" style="color: <?= $variant['product_variant_color_code'] ?>"></label>
                                 <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
+                    <h3 class="tp-product-details-action-title quantity-variants">Quantity</h3>
                     <div class="product-single__addtocart">
+
                         <div class="qty-control position-relative">
                             <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center">
                             <div class="qty-control__reduce">-</div>
@@ -621,6 +624,90 @@
 
     </section><!-- /.products-carousel container -->
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let selectedColor = null;
+        let selectedSize = null;
 
+        // lấy và chuyển dữ liệu của php sang javascrip
+        const variants = <?= json_encode($productDetail['variants']) ?>;
+        console.log(variants);
+        const colorButtons = document.querySelectorAll('.btn-color');
+        const sizeButtons = document.querySelectorAll('.btn-size');
+        // console.log(colorButtons, sizeButtons);
+
+        //Sử lý sự kiện khi người dùng chọn một màu
+        colorButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                selectedColor = this.getAttribute('data-color'); //Lấy mã màu
+                console.log(selectedColor)
+                updateSize(); // Cập nhật kích thước khả dụng
+                checkPrice(); //kiểm tra giá
+            })
+        })
+        sizeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                selectedSize = this.getAttribute('data-size'); //Lấy mã màu
+                console.log(selectedSize);
+                updateColor(); // Cập nhật màu khả dụng
+                checkPrice(); //kiểm tra giá
+            })
+        })
+
+        function checkPrice() {
+            if (selectedColor && selectedSize) {
+                const matchedVariant = variants.find(variant =>
+                    variant.product_variant_color_code === selectedColor &&
+                    variant.product_variant_size == selectedSize
+                );
+                if (matchedVariant) {
+                    document.querySelector('.price-variants').textContent = formatPrice(matchedVariant.product_variant_price);
+                    document.querySelector('.sale-price-variants').textContent = formatPrice(matchedVariant.product_variant_sale_price);
+                    document.querySelector('.quantity-variants').textContent = `Quantity:${matchedVariant.product_variant_quantity}`;
+                    document.getElementById('variant_id').value = matchedVariant.product_variant_id
+                    ;
+
+                } else {
+                    document.querySelector('.price-variants').textContent = '';
+                    document.querySelector('.sale-price-variants').textContent = '';
+                    document.querySelector('.quantity-variants').textContent = 0;
+                    document.getElementById('variant_id').value = '';
+                }
+            }
+        }
+
+        //Cập nhật màu khả dụng
+        function updateColor() {
+            colorButtons.forEach(button => {
+                const color = button.getAttribute('data-color');
+                //Kiểm tra kích thước đã chọn có màu này k
+                const isAvailable = variants.some(variant =>
+                    variant.product_variant_color_code === color &&
+                    variant.product_variant_size == selectedSize
+                )
+            });
+        }
+
+        function updateSize() {
+            sizeButtons.forEach(button => {
+                const size = button.getAttribute('data-size');
+                //Kiểm tra kích thước đã chọn có màu này k
+                const isAvailable = variants.some(variant =>
+                    variant.product_variant_color_code === selectedColor &&
+                    variant.product_variant_size == size
+                );
+                button.disabled = !isAvailable; //Nếu không tồn tại k cho chọn
+                if (!isAvailable) {
+                    button.classList.remove('selected'); //Nếu có sẵn thì thêm selected
+                }
+            });
+            selectedSize = null;
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN').format(price * 1000) + 'đ';
+        }
+    })
+</script>
 
 <?php include '../views/client/layout/footer.php' ?>
