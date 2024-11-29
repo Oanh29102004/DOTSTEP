@@ -82,7 +82,7 @@
                             </div>
                             <div id="variants">
                                 <div class="row mb-4 mt-3 border rounded px-2 ">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="mt-3 mb-3">
                                             <label class="form-label">Kích thước :</label>
                                             <div class="d-flex flex-wrap gap-2">
@@ -96,14 +96,14 @@
                                             <?php endif; ?>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-6">
                                         <div class="mt-3 mb-3">
                                             <label class="form-label">Màu sắc :</label>
                                             <div class="d-flex flex-wrap gap-2">
                                                 <?php foreach ($listColors as $color) : ?>
                                                     <input type="checkbox" class="btn-check" id="color-<?= $color['color_id'] ?>" name="variant_color[]" value="<?= $color['color_id'] ?>">
-                                                    <label class="btn btn-light avatar-sm rounded d-flex justify-content-center align-items-center" for="color-<?= $color['color_id'] ?>">
-                                                        <i style="background-color: <?= $color['color_code'] ?>; color: <?= $color['color_code'] ?>">/////////|</i> </label>
+                                                    <label class="btn btn-light avatar-sm rounded d-flex justify-content-center align-items-center"  for="color-<?= $color['color_id'] ?>">
+                                                        <i style="background-color: <?= $color['color_code'] ?>; color: <?= $color['color_code'] ?>; border-radius: 25px;">/||</i> </label>
                                                 <?php endforeach; ?>
                                             </div>
                                             <?php if (isset($_SESSION['errors']['variant_color'])) : ?>
