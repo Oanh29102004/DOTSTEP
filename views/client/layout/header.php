@@ -685,25 +685,28 @@
             <a class="header-tools__item js-open-aside" href="?act=login" data-aside="customerForms">
               
             <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            
               <use href="#icon_user" />
             </svg>
             
           </a>
+          
           <?php endif; ?>
         </div>
+        
+        
 
         <a class="header-tools__item" href="account_wishlist.html">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <use href="#icon_heart" />
           </svg>
         </a>
-
-        <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
+        
+        <a href="?act=cart" class="header-tools__item header-tools__cart " data-aside="cartDrawer">
+          
           <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <use href="#icon_cart" />
           </svg>
-          <span class="cart-amount d-block position-absolute js-cart-items-count">3</span>
+          <span class="cart-amount d-block position-absolute js-cart-items-count"></span>
         </a>
 
         <a class="header-tools__item" href="#" data-bs-toggle="modal" data-bs-target="#siteMap">

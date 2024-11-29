@@ -4,12 +4,15 @@ require_once('../controllers/admin/CategoryAdminController.php');
 require_once('../controllers/admin/ProductAdminController.php');
 require_once('../controllers/client/AuthController.php');
 require_once('../controllers/client/HomeController.php');
+require_once('../controllers/client/CartController.php');
+
 
 $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
 
 $home = new HomeController();
 $auth = new AuthController();
+$cart = new CartController();
 
 $action = isset($_GET['act']) ? $_GET['act'] : 'index';
 
@@ -70,5 +73,11 @@ switch ($action) {
         break;
     case 'profile':
         include '../views/client/profile/profile.php';
+        break;
+    case 'cart':
+        include '../views/client/cart/cart.php';
+        break;
+    case 'addToCart-buyNow':
+        $cart->addToCartOrBuyNow();
         break;
 }
