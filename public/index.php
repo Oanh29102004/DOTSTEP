@@ -74,6 +74,19 @@ switch ($action) {
         include '../views/client/profile/profile.php';
         break;
 
+    case 'cart':
+        $cart->index();
+        break;
+    case 'addToCart-buyNow':
+        $cart->addToCartOrBuyNow();
+        break;
+    case 'update-cart':
+        $cart->update();
+        break;
+    case 'delete-cart':
+        $cart->delete();
+        break;
+    
     case 'profileDetail':
         include '../views/client/profile/profileDetail.php';
         break;

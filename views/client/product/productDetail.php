@@ -45,6 +45,9 @@
                 </div>
             </div>
             <div class="col-lg-5">
+            <form action="?act=addToCart-buyNow" method="post">
+               <div class="tp-product-details-wrapper" >
+                <input type="hidden" name="product_id" value="<?= $productDetail['product_id'] ?>" >
                 <div class="d-flex justify-content-between mb-4 pb-md-2">
                     <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
                         <a href="./" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
@@ -93,7 +96,7 @@
                 <div class="product-single__short-desc">
                     <p><?= $productDetail['product_description'] ?></p>
                 </div>
-                <form name="addtocart-form" method="post">
+                
                     <div class="product-single__swatches">
                         <div class="product-swatch text-swatches">
                             <label>Sizes</label>
@@ -123,8 +126,10 @@
                             <div class="qty-control__reduce">-</div>
                             <div class="qty-control__increase">+</div>
                         </div><!-- .qty-control -->
-                        <button type="submit" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
+                        <button type="submit" name="add_to_cart" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Add to Cart</button>
+                        <button type="submit" name="buy_now" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Buy Now</button>
                     </div>
+                </div>
                 </form>
                 <div class="product-single__addtolinks">
                     <a href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -655,7 +660,6 @@
         })
 
         
-
         //Cập nhật màu khả dụng
         function updateColor() {
             colorButtons.forEach(button => {
@@ -672,7 +676,6 @@
             });
             selectedColor=null;
         }
-
         function updateSize() {
             sizeButtons.forEach(button => {
                 const size = button.getAttribute('data-size');
@@ -684,7 +687,6 @@
                 
             });
         }
-
         function checkPrice() {
             if (selectedColor && selectedSize) {
                 console.log('size:' + selectedSize, 'màu:' + selectedColor);
