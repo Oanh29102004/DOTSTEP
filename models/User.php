@@ -20,6 +20,19 @@ require_once  '../connect/connect.php';
         }
         return false;
       }
+
+      public function updateUser($name, $phone, $address, $email){
+        $sql = 'UPDATE users SET name=? , phone=?, address=?,  email=? WHERE user_id= ? ';
+        $stmt = $this->connect()->prepare($sql);
+        return $stmt->execute([ $name, $phone, $address, $email, $_SESSION['user']['user_id']]);
+      }
+
+      public function getUserByID($id){
+        $sql = "SELECT * FROM users WHERE user_id=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+      }
     }
 
 ?>
