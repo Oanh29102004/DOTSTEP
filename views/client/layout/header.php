@@ -681,7 +681,7 @@
 
               <use href="#icon_user" />
             </svg>
-
+            
           </a>
         <?php else : ?>
           <a class="header-tools__item js-open-aside" href="?act=login" data-aside="customerForms">
@@ -704,7 +704,6 @@
 
         <?php endif; ?>
       </div>
-
 
 
 

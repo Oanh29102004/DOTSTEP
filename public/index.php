@@ -4,23 +4,14 @@ require_once('../controllers/admin/CategoryAdminController.php');
 require_once('../controllers/admin/ProductAdminController.php');
 require_once('../controllers/client/AuthController.php');
 require_once('../controllers/client/HomeController.php');
-
-require_once('../controllers/client/CartController.php');
-
-
 require_once('../controllers/client/ProfileController.php');
-
 
 $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
 
 $home = new HomeController();
 $auth = new AuthController();
-
-$cart = new CartController();
-
 $profile = new ProfileController();
-
 
 $action = isset($_GET['act']) ? $_GET['act'] : 'index';
 
@@ -102,6 +93,5 @@ switch ($action) {
     case 'update-profile':
         $profile ->  updateProfile(); 
         break;
-
 
 }
