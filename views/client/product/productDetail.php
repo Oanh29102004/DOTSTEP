@@ -97,20 +97,20 @@
                     <div class="product-single__swatches">
                         <div class="product-swatch text-swatches">
                             <label>Sizes</label>
-                            <div class="swatch-list btn-size">
-                                <?php foreach ($productDetail['variants'] as $index => $variant): ?>
-                                    <input type="radio" name="size" id="swatch-<?= $index; ?>" data-size="<?= $variant['product_variant_size'] ?>">
-                                    <label class="swatch js-swatch " for="swatch-<?= $index; ?>" aria-label="Extra Small" data-bs-toggle="tooltip" data-bs-placement="top"><?= $variant['product_variant_size'] ?></label>
+                            <div class="swatch-list ">
+                                <?php foreach ($productDetail['variants'] as $key => $size): ?>
+                                    <input type="radio" name="size" class="btn-size" data-size="<?= $size['product_variant_size'] ?>"  id="swatch-size-<?= $key+1 ?>" >
+                                    <label class="swatch js-swatch " for="swatch-size-<?= $key+1 ?>" aria-label="<?= $size['product_variant_size'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" title= ""data-bs-original-title= "<?= $size['product_variant_size'] ?>"><?= $size['product_variant_size'] ?></label>
                                 <?php endforeach; ?>
                             </div>
                             <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
                         </div>
                         <div class="product-swatch color-swatches">
                             <label>Color</label>
-                            <div class="swatch-list btn-color">
-                                <?php foreach ($productDetail['variants'] as $index => $variant): ?>
-                                    <input type="radio" name="color" class id="swatch-<?= $index; ?>"  data-color="<?= $variant['product_variant_color_code'] ?>">
-                                    <label class="swatch swatch-color js-swatch" for="swatch-<?= $index; ?>" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $variant['product_variant_color'] ?>" style="color: <?= $variant['product_variant_color_code'] ?>"></label>
+                            <div class="swatch-list ">
+                                <?php foreach ($productDetail['variants'] as $key => $color): ?>
+                                    <input type="radio" name="color" class="btn-color" id="swatch-color-<?= $key+1 ?>"  data-color="<?= $color['product_variant_color_code'] ?>">
+                                    <label class="swatch swatch-color js-swatch" for="swatch-color-<?= $key+1; ?>" aria-label="<?= $color['product_variant_color'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="" style="color: <?= $color['product_variant_color_code'] ?>" data-bs-original-title="Black"></label>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -634,7 +634,7 @@
         console.log(variants);
         const colorButtons = document.querySelectorAll('.btn-color');
         const sizeButtons = document.querySelectorAll('.btn-size');
-        // console.log(colorButtons, sizeButtons);
+        console.log(colorButtons, sizeButtons);
 
         //Sử lý sự kiện khi người dùng chọn một màu
         colorButtons.forEach(button => {
@@ -654,12 +654,45 @@
             })
         })
 
+        
+
+        //Cập nhật màu khả dụng
+        function updateColor() {
+            colorButtons.forEach(button => {
+                const color = button.getAttribute('data-color');
+                //Kiểm tra kích thước đã chọn có màu này k
+                const isAvailable = variants.some(variant =>
+                    variant.product_variant_color_code === color &&
+                    variant.product_variant_size === selectedSize
+                );
+                button.disabled = !isAvailable; //Nếu không tồn tại k cho chọn
+                if (!isAvailable) {
+                    button.classList.remove('selected'); //Nếu có sẵn thì thêm selected
+                }
+            });
+            selectedColor=null;
+        }
+
+        function updateSize() {
+            sizeButtons.forEach(button => {
+                const size = button.getAttribute('data-size');
+                //Kiểm tra kích thước đã chọn có màu này k
+                const isAvailable = variants.some(variant =>
+                    variant.product_variant_color_code === selectedColor &&
+                    variant.product_variant_size === size
+                );
+                
+            });
+        }
+
         function checkPrice() {
             if (selectedColor && selectedSize) {
+                console.log('size:' + selectedSize, 'màu:' + selectedColor);
                 const matchedVariant = variants.find(variant =>
                     variant.product_variant_color_code === selectedColor &&
                     variant.product_variant_size == selectedSize
                 );
+                console.log(matchedVariant);
                 if (matchedVariant) {
                     document.querySelector('.price-variants').textContent = formatPrice(matchedVariant.product_variant_price);
                     document.querySelector('.sale-price-variants').textContent = formatPrice(matchedVariant.product_variant_sale_price);
@@ -676,38 +709,10 @@
             }
         }
 
-        //Cập nhật màu khả dụng
-        function updateColor() {
-            colorButtons.forEach(button => {
-                const color = button.getAttribute('data-color');
-                //Kiểm tra kích thước đã chọn có màu này k
-                const isAvailable = variants.some(variant =>
-                    variant.product_variant_color_code === color &&
-                    variant.product_variant_size == selectedSize
-                )
-            });
-        }
-
-        function updateSize() {
-            sizeButtons.forEach(button => {
-                const size = button.getAttribute('data-size');
-                //Kiểm tra kích thước đã chọn có màu này k
-                const isAvailable = variants.some(variant =>
-                    variant.product_variant_color_code === selectedColor &&
-                    variant.product_variant_size == size
-                );
-                button.disabled = !isAvailable; //Nếu không tồn tại k cho chọn
-                if (!isAvailable) {
-                    button.classList.remove('selected'); //Nếu có sẵn thì thêm selected
-                }
-            });
-            selectedSize = null;
-        }
-
         function formatPrice(price) {
             return new Intl.NumberFormat('vi-VN').format(price * 1000) + 'đ';
         }
-    })
+    });
 </script>
 
 <?php include '../views/client/layout/footer.php' ?>
