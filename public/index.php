@@ -5,10 +5,12 @@ require_once('../controllers/admin/ProductAdminController.php');
 require_once('../controllers/client/AuthController.php');
 require_once('../controllers/client/HomeController.php');
 require_once('../controllers/client/ProfileController.php');
+require_once('../controllers/client/CartController.php');
+
 
 $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
-
+$cart = new CartController();
 $home = new HomeController();
 $auth = new AuthController();
 $profile = new ProfileController();
@@ -73,7 +75,6 @@ switch ($action) {
     case 'profile':
         include '../views/client/profile/profile.php';
         break;
-
     case 'cart':
         $cart->index();
         break;
