@@ -2,6 +2,7 @@
 session_start();
 require_once('../controllers/admin/CategoryAdminController.php');
 require_once('../controllers/admin/ProductAdminController.php');
+require_once('../controllers/admin/CouponAdminController.php');
 require_once('../controllers/client/AuthController.php');
 require_once('../controllers/client/HomeController.php');
 require_once('../controllers/client/ProfileController.php');
@@ -10,6 +11,9 @@ require_once('../controllers/client/CartController.php');
 
 $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
+$couponAdmin = new CouponAdminController();
+
+
 $cart = new CartController();
 $home = new HomeController();
 $auth = new AuthController();
@@ -87,12 +91,27 @@ switch ($action) {
     case 'delete-cart':
         $cart->delete();
         break;
-    
+
     case 'profileDetail':
         include '../views/client/profile/profileDetail.php';
         break;
     case 'update-profile':
-        $profile ->  updateProfile(); 
+        $profile->updateProfile();
         break;
 
+    case 'coupon':
+        $couponAdmin->index();
+        break;
+    case 'coupon-create':
+        $couponAdmin->create();
+        break;
+    case 'coupon-edit':
+        $couponAdmin->edit();
+        break;
+    case 'coupon-update':
+        $couponAdmin->update();
+        break;
+    case 'coupon-delete':
+        $couponAdmin->delete();
+        break;
 }

@@ -24,6 +24,13 @@ class CategoryAdminController extends Category
                 $errors['description'] = 'Vui lòng nhập mô tả';
             }
             $_SESSION['errors'] = $errors;
+            if(count($errors)) {
+                $_SESSION['error'] = "Vui lòng nhập đầy đủ dữ liệu";
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                exit();
+            }
+
+
             $file = $_FILES['image'];
             $images = $file['name'];
             if (move_uploaded_file($file['tmp_name'],  './images/category/' . $images)) {

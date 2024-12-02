@@ -94,7 +94,16 @@
                             <li><a class="ms-link" href="customer-detail.html">Customers Details</a></li>
                         </ul>
                     </li>
-
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-sale" href="#">
+                        <i class="icofont-sale-discount fs-5"></i> <span>Sales Promotion</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="menu-sale">
+                            <li><a class="ms-link" href="index.php?act=coupon">Coupons List</a></li>
+                            <li><a class="ms-link" href="index.php?act=coupon-create">Coupons Add</a></li>
+                            <li><a class="ms-link" href="coupon-edit.html">Coupons Edit</a></li>
+                        </ul>
+                    </li>
 
                 </ul>
                 <!-- Menu: menu collepce btn -->
