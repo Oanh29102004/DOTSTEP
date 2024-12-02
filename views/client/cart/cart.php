@@ -87,9 +87,10 @@
           <div class="cart-table-footer">
             <div class="position-relative bg-body">
               <input class="form-control" type="text" name="coupon_code" placeholder="Coupon Code">
-              <input class="btn-link fw-medium position-absolute top-0 end-0 h-100 px-4" type="submit" value="APPLY COUPON">
+              <button class="btn-light fw-medium position-absolute top-0 end-0 h-100 px-4" name="apply_coupon" type="submit">APPLY COUPON</button>
+              
             </div>
-            <button type="submit" name="update_cart" class="btn btn-light">UPDATE CART</button>
+            <button type="submit" name="update_cart" class="btn btn-dark">UPDATE CART</button>
           </div>
         </div>
         </form>
@@ -99,7 +100,7 @@
               <h3>Cart Totals</h3>
               <table class="cart-totals">
                 <tbody>
-                <?php foreach($carts as $cart) : ?>
+                
                   <tr>
                     <th>Subtotal</th>
                     <td><?= number_format($sum *1000 , 0, ',' , '.') ?>đ</td>
@@ -128,12 +129,16 @@
                   <!-- <tr>
                     <th>VAT</th>
                     <td>$19</td>
+                  </tr> -->
+                  <tr>
+                    <th>Giá giảm</th>
+                    <td>-<?= number_format($_SESSION['totalCoupon']*1000, 0, ',' , '.') ?>đ</td>
                   </tr>
-                  <tr> -->
+                  <tr>
                     <th>Total</th>
-                    <td><?= number_format($sum *1000 , 0, ',' , '.') ?>đ</td>
+                    <td><?= number_format(($sum - $_SESSION['totalCoupon']) *1000, 0, ',' , '.') ?>đ</td>
                   </tr>
-                  <?php endforeach; ?>
+                  
                 </tbody>
               </table>
             </div>
@@ -147,4 +152,5 @@
       </div>
     </section>
   </main>
+  <br>
   <?php include '../views/client/layout/footer.php' ?>
