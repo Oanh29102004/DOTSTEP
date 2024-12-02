@@ -1,3 +1,8 @@
+<?php
+$uniqueColors = array_unique(array_column($productDetail['variants'], 'product_variant_color_code'));
+$uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_variant_size'));
+?>
+
 <?php include '../views/client/layout/header.php' ?>
 
 <main>
@@ -45,91 +50,92 @@
                 </div>
             </div>
             <div class="col-lg-5">
-            <form action="?act=addToCart-buyNow" method="post">
-               <div class="tp-product-details-wrapper" >
-                <input type="hidden" name="product_id" value="<?= $productDetail['product_id'] ?>" >
-                <div class="d-flex justify-content-between mb-4 pb-md-2">
-                    <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
-                        <a href="./" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
-                        <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
-                        <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium"><?= $productDetail['category_name'] ?></a>
-                        <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
-                        <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium"><?= $productDetail['product_name'] ?></a>
-                    </div><!-- /.breadcrumb -->
+                <form action="?act=addToCart-buyNow" method="post">
+                    <div class="tp-product-details-wrapper">
+                        <input type="hidden" name="product_id" value="<?= $productDetail['product_id'] ?>">
+                        <div class="d-flex justify-content-between mb-4 pb-md-2">
+                            <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
+                                <a href="./" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
+                                <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
+                                <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium"><?= $productDetail['category_name'] ?></a>
+                                <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
+                                <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium"><?= $productDetail['product_name'] ?></a>
+                            </div><!-- /.breadcrumb -->
 
-                    <div class="product-single__prev-next d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
-                        <a href="product1_simple.html" class="text-uppercase fw-medium"><svg class="mb-1px" width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
-                                <use href="#icon_prev_md" />
-                            </svg><span class="menu-link menu-link_us-s">Prev</span></a>
-                        <a href="product3_external.html" class="text-uppercase fw-medium"><span class="menu-link menu-link_us-s">Next</span><svg class="mb-1px" width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
-                                <use href="#icon_next_md" />
-                            </svg></a>
-                    </div><!-- /.shop-acs -->
-                </div>
-                <h1 class="product-single__name"><?= $productDetail['product_name'] ?></h1>
-                <div class="product-single__rating">
-                    <div class="reviews-group d-flex">
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                    </div>
-                    <span class="reviews-note text-lowercase text-secondary ms-1">0 reviews</span>
-                </div>
-                <div class="product-single__price">
-
-                    <span class="current-price price-variants">$<?= $productDetail['variant_sale_price'] ?></span>
-                    <span class="money price price-old sale-price-variants">$<?= $productDetail['variant_price'] ?></span>
-                    <input type="hidden" name="variant_id" id="variant_id">
-                </div>
-                <div class="product-single__short-desc">
-                    <p><?= $productDetail['product_description'] ?></p>
-                </div>
-                
-                    <div class="product-single__swatches">
-                        <div class="product-swatch text-swatches">
-                            <label>Sizes</label>
-                            <div class="swatch-list ">
-                                <?php foreach ($productDetail['variants'] as $key => $size): ?>
-                                    <input type="radio" name="size" class="btn-size" data-size="<?= $size['product_variant_size'] ?>"  id="swatch-size-<?= $key+1 ?>" >
-                                    <label class="swatch js-swatch " for="swatch-size-<?= $key+1 ?>" aria-label="<?= $size['product_variant_size'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" title= ""data-bs-original-title= "<?= $size['product_variant_size'] ?>"><?= $size['product_variant_size'] ?></label>
-                                <?php endforeach; ?>
-                            </div>
-                            <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
+                            <div class="product-single__prev-next d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
+                                <a href="product1_simple.html" class="text-uppercase fw-medium"><svg class="mb-1px" width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+                                        <use href="#icon_prev_md" />
+                                    </svg><span class="menu-link menu-link_us-s">Prev</span></a>
+                                <a href="product3_external.html" class="text-uppercase fw-medium"><span class="menu-link menu-link_us-s">Next</span><svg class="mb-1px" width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+                                        <use href="#icon_next_md" />
+                                    </svg></a>
+                            </div><!-- /.shop-acs -->
                         </div>
-                        <div class="product-swatch color-swatches">
-                            <label>Color</label>
-                            <div class="swatch-list ">
-                                <?php foreach ($productDetail['variants'] as $key => $color): ?>
-                                    <input type="radio" name="color" class="btn-color" id="swatch-color-<?= $key+1 ?>"  data-color="<?= $color['product_variant_color_code'] ?>">
-                                    <label class="swatch swatch-color js-swatch" for="swatch-color-<?= $key+1; ?>" aria-label="<?= $color['product_variant_color'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="" style="color: <?= $color['product_variant_color_code'] ?>" data-bs-original-title="Black"></label>
-                                <?php endforeach; ?>
+                        <h1 class="product-single__name"><?= $productDetail['product_name'] ?></h1>
+                        <div class="product-single__rating">
+                            <div class="reviews-group d-flex">
+                                <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                                    <use href="#icon_star" />
+                                </svg>
+                                <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                                    <use href="#icon_star" />
+                                </svg>
+                                <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                                    <use href="#icon_star" />
+                                </svg>
+                                <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                                    <use href="#icon_star" />
+                                </svg>
+                                <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                                    <use href="#icon_star" />
+                                </svg>
                             </div>
+                            <span class="reviews-note text-lowercase text-secondary ms-1">0 reviews</span>
+                        </div>
+                        <div class="product-single__price">
+
+                            <span class="current-price price-variants"><?= number_format($productDetail['variant_sale_price'] *1000 , 0, ',' , '.')  ?> đ</span>
+                            <span class="money price price-old sale-price-variants"><?= number_format($productDetail['variant_price'] *1000 , 0, ',' , '.')  ?> đ</span>
+                            <input type="hidden" name="variant_id" id="variant_id">
+                        </div>
+                        <div class="product-single__short-desc">
+                            <p><?= $productDetail['product_description'] ?></p>
+                        </div>
+
+                        <div class="product-single__swatches">
+                            <div class="product-swatch color-swatches">
+                                <label>Color</label>
+                                <div class="swatch-list">
+                                    <?php foreach ($uniqueColors as $key => $color): ?>
+                                        <input type="radio" name="color" class="btn-color" id="swatch-color-<?= $key + 1 ?>" data-color="<?= $color ?>">
+                                        <label class="swatch swatch-color js-swatch" for="swatch-color-<?= $key + 1 ?>" style="color: <?= $color ?>"></label>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                            <div class="product-swatch text-swatches">
+                                <label>Sizes</label>
+                                <div class="swatch-list">
+                                    <?php foreach ($uniqueSizes as $key => $size): ?>
+                                        <input type="radio" name="size" class="btn-size" id="swatch-size-<?= $key + 1 ?>" data-size="<?= $size ?>">
+                                        <label class="swatch js-swatch" for="swatch-size-<?= $key + 1 ?>"><?= $size ?></label>
+                                    <?php endforeach; ?>
+                                </div>
+                                <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
+                            </div>
+
+                        </div>
+                        <h3 class="tp-product-details-action-title quantity-variants">Quantity</h3>
+                        <div class="product-single__addtocart">
+
+                            <div class="qty-control position-relative">
+                                <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center">
+                                <div class="qty-control__reduce">-</div>
+                                <div class="qty-control__increase">+</div>
+                            </div><!-- .qty-control -->
+                            <button type="submit" name="add_to_cart" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Add to Cart</button>
+                            <button type="submit" name="buy_now" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Buy Now</button>
                         </div>
                     </div>
-                    <h3 class="tp-product-details-action-title quantity-variants">Quantity</h3>
-                    <div class="product-single__addtocart">
-
-                        <div class="qty-control position-relative">
-                            <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center">
-                            <div class="qty-control__reduce">-</div>
-                            <div class="qty-control__increase">+</div>
-                        </div><!-- .qty-control -->
-                        <button type="submit" name="add_to_cart" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Add to Cart</button>
-                        <button type="submit" name="buy_now" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Buy Now</button>
-                    </div>
-                </div>
                 </form>
                 <div class="product-single__addtolinks">
                     <a href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,544 +183,96 @@
                 </div>
             </div>
         </div>
-        <div class="product-single__details-tab">
-            <ul class="nav nav-tabs" id="myTab1" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link nav-link_underscore active" id="tab-description-tab" data-bs-toggle="tab" href="#tab-description" role="tab" aria-controls="tab-description" aria-selected="true">Description</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link nav-link_underscore" id="tab-additional-info-tab" data-bs-toggle="tab" href="#tab-additional-info" role="tab" aria-controls="tab-additional-info" aria-selected="false">Additional Information</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link nav-link_underscore" id="tab-reviews-tab" data-bs-toggle="tab" href="#tab-reviews" role="tab" aria-controls="tab-reviews" aria-selected="false">Reviews (2)</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="tab-description" role="tabpanel" aria-labelledby="tab-description-tab">
-                    <div class="product-single__description">
-                        <h3 class="block-title mb-4">Sed do eiusmod tempor incididunt ut labore</h3>
-                        <p class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h3 class="block-title">Why choose product?</h3>
-                                <ul class="list text-list">
-                                    <li>Creat by cotton fibric with soft and smooth</li>
-                                    <li>Simple, Configurable (e.g. size, color, etc.), bundled</li>
-                                    <li>Downloadable/Digital Products, Virtual Products</li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <h3 class="block-title">Sample Number List</h3>
-                                <ol class="list text-list">
-                                    <li>Create Store-specific attrittbutes on the fly</li>
-                                    <li>Simple, Configurable (e.g. size, color, etc.), bundled</li>
-                                    <li>Downloadable/Digital Products, Virtual Products</li>
-                                </ol>
-                            </div>
-                        </div>
-                        <h3 class="block-title mb-0">Lining</h3>
-                        <p class="content">100% Polyester, Main: 100% Polyester.</p>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="tab-additional-info" role="tabpanel" aria-labelledby="tab-additional-info-tab">
-                    <div class="product-single__addtional-info">
-                        <div class="item">
-                            <label class="h6">Weight</label>
-                            <span>1.25 kg</span>
-                        </div>
-                        <div class="item">
-                            <label class="h6">Dimensions</label>
-                            <span>90 x 60 x 90 cm</span>
-                        </div>
-                        <div class="item">
-                            <label class="h6">Size</label>
-                            <span>XS, S, M, L, XL</span>
-                        </div>
-                        <div class="item">
-                            <label class="h6">Color</label>
-                            <span>Black, Orange, White</span>
-                        </div>
-                        <div class="item">
-                            <label class="h6">Storage</label>
-                            <span>Relaxed fit shirt-style dress with a rugged</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="tab-reviews" role="tabpanel" aria-labelledby="tab-reviews-tab">
-                    <h2 class="product-single__reviews-title">Reviews</h2>
-                    <div class="product-single__reviews-list">
-                        <div class="product-single__reviews-item">
-                            <div class="customer-avatar">
-                                <img loading="lazy" src="client/images/avatar.jpg" alt="">
-                            </div>
-                            <div class="customer-review">
-                                <div class="customer-name">
-                                    <h6>Janice Miller</h6>
-                                    <div class="reviews-group d-flex">
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="review-date">April 06, 2023</div>
-                                <div class="review-text">
-                                    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est…</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-single__reviews-item">
-                            <div class="customer-avatar">
-                                <img loading="lazy" src="client/images/avatar.jpg" alt="">
-                            </div>
-                            <div class="customer-review">
-                                <div class="customer-name">
-                                    <h6>Benjam Porter</h6>
-                                    <div class="reviews-group d-flex">
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="review-date">April 06, 2023</div>
-                                <div class="review-text">
-                                    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est…</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-single__review-form">
-                        <form name="customer-review-form">
-                            <h5>Be the first to review “Message Cotton T-Shirt”</h5>
-                            <p>Your email address will not be published. Required fields are marked *</p>
-                            <div class="select-star-rating">
-                                <label>Your rating *</label>
-                                <span class="star-rating">
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                </span>
-                                <input type="hidden" id="form-input-rating" value="">
-                            </div>
-                            <div class="mb-4">
-                                <textarea id="form-input-review" class="form-control form-control_gray" placeholder="Your Review" cols="30" rows="8"></textarea>
-                            </div>
-                            <div class="form-label-fixed mb-4">
-                                <label for="form-input-name" class="form-label">Name *</label>
-                                <input id="form-input-name" class="form-control form-control-md form-control_gray">
-                            </div>
-                            <div class="form-label-fixed mb-4">
-                                <label for="form-input-email" class="form-label">Email address *</label>
-                                <input id="form-input-email" class="form-control form-control-md form-control_gray">
-                            </div>
-                            <div class="form-check mb-4">
-                                <input class="form-check-input form-check-input_fill" type="checkbox" value="" id="remember_checkbox">
-                                <label class="form-check-label" for="remember_checkbox">
-                                    Save my name, email, and website in this browser for the next time I comment.
-                                </label>
-                            </div>
-                            <div class="form-action">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </section>
-    <section class="products-carousel container">
-        <h2 class="h3 text-uppercase mb-4 pb-xl-2 mb-xl-4">Related <strong>Products</strong></h2>
 
-        <div id="related_products" class="position-relative">
-            <div class="swiper-container js-swiper-slider"
-                data-settings='{
-            "autoplay": false,
-            "slidesPerView": 4,
-            "slidesPerGroup": 4,
-            "effect": "none",
-            "loop": true,
-            "pagination": {
-              "el": "#related_products .products-pagination",
-              "type": "bullets",
-              "clickable": true
-            },
-            "navigation": {
-              "nextEl": "#related_products .products-carousel__next",
-              "prevEl": "#related_products .products-carousel__prev"
-            },
-            "breakpoints": {
-              "320": {
-                "slidesPerView": 2,
-                "slidesPerGroup": 2,
-                "spaceBetween": 14
-              },
-              "768": {
-                "slidesPerView": 3,
-                "slidesPerGroup": 3,
-                "spaceBetween": 24
-              },
-              "992": {
-                "slidesPerView": 4,
-                "slidesPerGroup": 4,
-                "spaceBetween": 30
-              }
-            }
-          }'>
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide product-card">
-                        <div class="pc__img-wrapper">
-                            <a href="product1_simple.html">
-                                <img loading="lazy" src="client/images/products/product_3.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="client/images/products/product_3-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                            </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                        </div>
-
-                        <div class="pc__info position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href="product1_simple.html">Kirby T-Shirt</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">$17</span>
-                            </div>
-
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_heart" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide product-card">
-                        <div class="pc__img-wrapper">
-                            <a href="product1_simple.html">
-                                <img loading="lazy" src="client/images/products/product_1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="client/images/products/product_1-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                            </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                        </div>
-
-                        <div class="pc__info position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href="product1_simple.html">Cropped Faux Leather Jacket</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">$29</span>
-                            </div>
-                            <div class="product-card__review d-flex align-items-center">
-                                <div class="reviews-group d-flex">
-                                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_star" />
-                                    </svg>
-                                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_star" />
-                                    </svg>
-                                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_star" />
-                                    </svg>
-                                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_star" />
-                                    </svg>
-                                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_star" />
-                                    </svg>
-                                </div>
-                                <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
-                            </div>
-
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_heart" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide product-card">
-                        <div class="pc__img-wrapper">
-                            <a href="product1_simple.html">
-                                <img loading="lazy" src="client/images/products/product_2.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="client/images/products/product_2-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                            </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                        </div>
-
-                        <div class="pc__info position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href="product1_simple.html">Calvin Shorts</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">$62</span>
-                            </div>
-
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_heart" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide product-card">
-                        <div class="pc__img-wrapper">
-                            <a href="product1_simple.html">
-                                <img loading="lazy" src="client/images/products/product_6.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="client/images/products/product_6-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                            </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                        </div>
-
-                        <div class="pc__info position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href="product1_simple.html">Shirt In Botanical Cheetah Print</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">$62</span>
-                            </div>
-
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_heart" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide product-card">
-                        <div class="pc__img-wrapper">
-                            <a href="product1_simple.html">
-                                <img loading="lazy" src="client/images/products/product_7.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="client/images/products/product_7-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                            </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                        </div>
-
-                        <div class="pc__info position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href="product1_simple.html">Cotton Jersey T-Shirt</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">$17</span>
-                            </div>
-
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_heart" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide product-card">
-                        <div class="pc__img-wrapper">
-                            <a href="product1_simple.html">
-                                <img loading="lazy" src="client/images/products/product_4.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="client/images/products/product_4-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                            </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                        </div>
-
-                        <div class="pc__info position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href="product1_simple.html">Cableknit Shawl</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price price-old">$129</span>
-                                <span class="money price price-sale">$99</span>
-                            </div>
-
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_heart" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide product-card">
-                        <div class="pc__img-wrapper">
-                            <a href="product1_simple.html">
-                                <img loading="lazy" src="client/images/products/product_5.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="client/images/products/product_5-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                            </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                        </div>
-
-                        <div class="pc__info position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href="product1_simple.html">Colorful Jacket</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">$29</span>
-                            </div>
-
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_heart" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide product-card">
-                        <div class="pc__img-wrapper">
-                            <a href="product1_simple.html">
-                                <img loading="lazy" src="client/images/products/product_8.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                                <img loading="lazy" src="client/images/products/product_8-1.jpg" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
-                            </a>
-                            <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                        </div>
-
-                        <div class="pc__info position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href="product1_simple.html">Zessi Dresses</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price price-old">$129</span>
-                                <span class="money price price-sale">$99</span>
-                            </div>
-
-                            <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_heart" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div><!-- /.swiper-wrapper -->
-            </div><!-- /.swiper-container js-swiper-slider -->
-
-            <div class="products-carousel__prev position-absolute top-50 d-flex align-items-center justify-content-center">
-                <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#icon_prev_md" />
-                </svg>
-            </div><!-- /.products-carousel__prev -->
-            <div class="products-carousel__next position-absolute top-50 d-flex align-items-center justify-content-center">
-                <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#icon_next_md" />
-                </svg>
-            </div><!-- /.products-carousel__next -->
-
-            <div class="products-pagination mt-4 mb-5 d-flex align-items-center justify-content-center"></div>
-            <!-- /.products-pagination -->
-        </div><!-- /.position-relative -->
-
-    </section><!-- /.products-carousel container -->
 </main>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let selectedColor = null;
-        let selectedSize = null;
+document.addEventListener('DOMContentLoaded', function() {
+    let selectedColor = null;
+    let selectedSize = null;
 
-        // lấy và chuyển dữ liệu của php sang javascrip
-        const variants = <?= json_encode($productDetail['variants']) ?>;
-        console.log(variants);
-        const colorButtons = document.querySelectorAll('.btn-color');
-        const sizeButtons = document.querySelectorAll('.btn-size');
-        console.log(colorButtons, sizeButtons);
+    const variants = <?= json_encode($productDetail['variants']) ?>;
+    const colorButtons = document.querySelectorAll('.btn-color');
+    const sizeButtons = document.querySelectorAll('.btn-size');
 
-        //Sử lý sự kiện khi người dùng chọn một màu
-        colorButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                selectedColor = this.getAttribute('data-color'); //Lấy mã màu
-                console.log(selectedColor)
-                updateSize(); // Cập nhật kích thước khả dụng
-                checkPrice(); //kiểm tra giá
-            })
-        })
-        sizeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                selectedSize = this.getAttribute('data-size'); //Lấy mã màu
-                console.log(selectedSize);
-                updateColor(); // Cập nhật màu khả dụng
-                checkPrice(); //kiểm tra giá
-            })
-        })
-
-        
-        //Cập nhật màu khả dụng
-        function updateColor() {
-            colorButtons.forEach(button => {
-                const color = button.getAttribute('data-color');
-                //Kiểm tra kích thước đã chọn có màu này k
-                const isAvailable = variants.some(variant =>
-                    variant.product_variant_color_code === color &&
-                    variant.product_variant_size === selectedSize
-                );
-                button.disabled = !isAvailable; //Nếu không tồn tại k cho chọn
-                if (!isAvailable) {
-                    button.classList.remove('selected'); //Nếu có sẵn thì thêm selected
-                }
-            });
-            selectedColor=null;
-        }
-        function updateSize() {
-            sizeButtons.forEach(button => {
-                const size = button.getAttribute('data-size');
-                //Kiểm tra kích thước đã chọn có màu này k
-                const isAvailable = variants.some(variant =>
-                    variant.product_variant_color_code === selectedColor &&
-                    variant.product_variant_size === size
-                );
-                
-            });
-        }
-        function checkPrice() {
-            if (selectedColor && selectedSize) {
-                console.log('size:' + selectedSize, 'màu:' + selectedColor);
-                const matchedVariant = variants.find(variant =>
-                    variant.product_variant_color_code === selectedColor &&
-                    variant.product_variant_size == selectedSize
-                );
-                console.log(matchedVariant);
-                if (matchedVariant) {
-                    document.querySelector('.price-variants').textContent = formatPrice(matchedVariant.product_variant_price);
-                    document.querySelector('.sale-price-variants').textContent = formatPrice(matchedVariant.product_variant_sale_price);
-                    document.querySelector('.quantity-variants').textContent = `Quantity:${matchedVariant.product_variant_quantity}`;
-                    document.getElementById('variant_id').value = matchedVariant.product_variant_id
-                    ;
-
-                } else {
-                    document.querySelector('.price-variants').textContent = '';
-                    document.querySelector('.sale-price-variants').textContent = '';
-                    document.querySelector('.quantity-variants').textContent = 0;
-                    document.getElementById('variant_id').value = '';
-                }
-            }
-        }
-
-        function formatPrice(price) {
-            return new Intl.NumberFormat('vi-VN').format(price * 1000) + 'đ';
-        }
+    // Khi người dùng chọn màu
+    colorButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            selectedColor = this.getAttribute('data-color'); // Lấy mã màu
+            updateSize(); // Cập nhật kích thước khả dụng
+            checkPrice(); // Hiển thị giá
+        });
     });
+
+    // Khi người dùng chọn size
+    sizeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            selectedSize = this.getAttribute('data-size'); // Lấy size
+            updateColor(); // Cập nhật màu khả dụng
+            checkPrice(); // Hiển thị giá
+        });
+    });
+
+    // Cập nhật màu khả dụng
+    function updateColor() {
+        colorButtons.forEach(button => {
+            const color = button.getAttribute('data-color');
+            const isAvailable = variants.some(variant =>
+                variant.product_variant_color_code === color &&
+                variant.product_variant_size === selectedSize
+            );
+            button.disabled = false; // Cho phép đổi màu
+            button.style.opacity = isAvailable ? '1' : '0.1'; // Làm mờ nếu không khả dụng
+        });
+    }
+
+    // Cập nhật kích thước khả dụng
+    function updateSize() {
+        sizeButtons.forEach(button => {
+            const size = button.getAttribute('data-size');
+            const isAvailable = variants.some(variant =>
+                variant.product_variant_color_code === selectedColor &&
+                variant.product_variant_size === size
+            );
+            button.disabled = false; // Cho phép đổi size
+            button.style.opacity = isAvailable ? '1' : '0.1'; // Làm mờ nếu không khả dụng
+        });
+    }
+
+    // Hiển thị giá và thông tin
+    function checkPrice() {
+        if (selectedColor && selectedSize) {
+            const matchedVariant = variants.find(variant =>
+                variant.product_variant_color_code === selectedColor &&
+                variant.product_variant_size == selectedSize
+            );
+            if (matchedVariant) {
+                document.querySelector('.price-variants').textContent = formatPrice(matchedVariant.product_variant_price);
+                document.querySelector('.sale-price-variants').textContent = formatPrice(matchedVariant.product_variant_sale_price);
+                document.querySelector('.quantity-variants').textContent = `Số lượng: ${matchedVariant.product_variant_quantity}`;
+                document.getElementById('variant_id').value = matchedVariant.product_variant_id;
+            } else {
+                resetPriceDisplay();
+            }
+        } else {
+            resetPriceDisplay();
+        }
+    }
+
+    // Đặt lại giá hiển thị
+    function resetPriceDisplay() {
+        document.querySelector('.price-variants').textContent = '';
+        document.querySelector('.sale-price-variants').textContent = '';
+        document.querySelector('.quantity-variants').textContent = 'Số lượng: 0';
+        document.getElementById('variant_id').value = '';
+    }
+
+    // Định dạng giá tiền
+    function formatPrice(price) {
+        return new Intl.NumberFormat('vi-VN').format(price * 1000) + 'đ';
+    }
+});
 </script>
 
 <?php include '../views/client/layout/footer.php' ?>

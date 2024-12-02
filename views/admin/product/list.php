@@ -32,6 +32,19 @@
                             </thead>
                             <tbody>
                                 <?php foreach($listProduct as $product) : ?>
+                                <?php
+                                    // Lọc size và color duy nhất
+                                    $uniqueSizes = [];
+                                    $uniqueColors = [];
+                                    foreach ($product['variants'] as $variant) {
+                                        if (!in_array($variant['product_variant_size'], $uniqueSizes)) {
+                                            $uniqueSizes[] = $variant['product_variant_size'];
+                                        }
+                                        if (!in_array($variant['product_variant_color'], $uniqueColors)) {
+                                            $uniqueColors[] = $variant['product_variant_color'];
+                                        }
+                                    }
+                                ?>
                                 <tr>
                                     <!-- <td>
                                         <div class="form-check ms-1">
@@ -48,14 +61,14 @@
                                             <div>
                                                 <a href="#!" class="text-dark fw-medium fs-15"><?=$product['product_name']?></a>
                                                 <p class="text-muted mb-0 mt-1 fs-13"><span>Size : </span>
-                                                    <?php foreach ($product['variants'] as $size) : ?>
-                                                        <span><?= $size['product_variant_size']  ?></span>
-                                                    <?php endforeach ?>                                        
+                                                    <?php foreach ($uniqueSizes as $size) : ?>
+                                                        <span><?= $size ?></span>
+                                                    <?php endforeach ?>                                      
                                                 </p>
                                                 <p class="text-muted mb-0 mt-1 fs-13"><span>Color : </span>
-                                                    <?php foreach ($product['variants'] as $color) : ?>
-                                                        <span><?= $color['product_variant_color'] ?></span>
-                                                    <?php endforeach ?>                                        
+                                                    <?php foreach ($uniqueColors as $color) : ?>
+                                                        <span><?= $color ?></span>
+                                                    <?php endforeach ?>                                      
                                                 </p>
                                             </div>
                                         </div>
@@ -73,7 +86,6 @@
                                 </tr>
                                 <?php endforeach ?>
                             </tbody>    
-                                
                         </table>
                     </div>
                 </div>

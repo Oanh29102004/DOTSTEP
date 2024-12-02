@@ -94,11 +94,11 @@ class CartController extends Cart
             }
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply_coupon'])) {
             $coupon = $this->getCouponByCode($_POST['coupon_code']);
-            // if (!$coupon) {
-            //     $_SESSION['error'] = 'Mã giảm giá không tồn tại.';
-            //     header('Location:' . $_SERVER['HTTP_REFERER']);
-            //     exit();
-            // }
+            if (!$coupon) {
+                $_SESSION['error'] = 'Mã giảm giá không tồn tại.';
+                header('Location:' . $_SERVER['HTTP_REFERER']);
+                exit();
+            }
             // if (isset($_SESSION['coupon'])) {
             //     $_SESSION['error'] = 'Chỉ được dùng một mã giảm giá cho 1 đơn hàng.';
             //     header('Location:' . $_SERVER['HTTP_REFERER']);
