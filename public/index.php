@@ -7,6 +7,7 @@ require_once('../controllers/client/AuthController.php');
 require_once('../controllers/client/HomeController.php');
 require_once('../controllers/client/ProfileController.php');
 require_once('../controllers/client/CartController.php');
+require_once('../controllers/client/OrderController.php');
 
 
 $categoryAdmin = new CategoryAdminController();
@@ -18,7 +19,7 @@ $cart = new CartController();
 $home = new HomeController();
 $auth = new AuthController();
 $profile = new ProfileController();
-
+$order = new OrderController(); 
 $action = isset($_GET['act']) ? $_GET['act'] : 'index';
 
 switch ($action) {
@@ -113,5 +114,12 @@ switch ($action) {
         break;
     case 'coupon-delete':
         $couponAdmin->delete();
+        break;
+    case 'checkout':
+        $order->index();
+        
+        break;
+    case 'order':
+        $order->checkout();
         break;
 }

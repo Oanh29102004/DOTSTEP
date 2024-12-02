@@ -132,21 +132,19 @@
                   </tr> -->
                   <tr>
                     <th>Giá giảm</th>
-                    <td>-<?= number_format($_SESSION['totalCoupon']*1000, 0, ',' , '.') ?>đ</td>
+                    <td>-<?= number_format(($_SESSION['totalCoupon'] ?? 0)*1000, 0, ',' , '.') ?>đ</td>
                   </tr>
                   <tr>
                     <th>Total</th>
-                    <td><?= number_format(($sum - $_SESSION['totalCoupon']) *1000, 0, ',' , '.') ?>đ</td>
+                    <td><?= number_format(($sum - ($_SESSION['totalCoupon']?? 0)) *1000, 0, ',' , '.') ?>đ</td>
                   </tr>
                   
                 </tbody>
               </table>
             </div>
-            <div class="mobile_fixed-btn_wrapper">
-              <div class="button-wrapper container">
-                <button class="btn btn-primary btn-checkout">PROCEED TO CHECKOUT</button>
+              <div class="cart-table__header">
+                <a href="?act=checkout" class=" btn btn-dark  " > CHECKOUT</a>
               </div>
-            </div>
           </div>
         </div>
       </div>
