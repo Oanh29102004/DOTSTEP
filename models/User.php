@@ -33,6 +33,33 @@ require_once  '../connect/connect.php';
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);  
       }
+
+      public function updatePassword($newPassword){
+        $hash_password = password_hash($newPassword, PASSWORD_DEFAULT);
+        $sql = 'UPDATE users SET password=? WHERE user_id=?';
+        $stmt = $this->connect()->prepare($sql);
+        return $stmt->execute([$hash_password, $_SESSION['user']['user_id']]);
+      }
+
+      public function getPassword(){
+        $sql = 'SELECT password FROM users Where user_id =?'; 
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$_SESSION['user']['user_id']]);
+        return $stmt->fetchColumn();
+
+      }
+
+      public function auth($email, $password){
+        $sql = 'SELECT *FROM users WHERE email =? ';
+        $stmt = $this -> connect() -> prepare($sql);
+        $stmt -> execute([$email]);
+        $user = $stmt -> fetch();
+
+        if ($user && $user['role_id'] ==2 && password_verify($password, $user['password'])) {
+            return $user;
+        }
+        return false;
+      }
     }
 
 ?>

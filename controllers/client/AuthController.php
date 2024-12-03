@@ -73,4 +73,43 @@ class AuthController extends User
         }
         header("Location: ./");
     }
+
+    public function changePassword(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change-password'])){
+            // $errors = [];
+            // $oldPassword =$this->getPassword();
+            // if (empty($_POST['old_pass'])) {
+            //     $_SESSION['error'] = 'Vui lòng nhập mật khẩu cũ';
+            // }
+            // if (empty($_POST['new_pass'])) {
+            //     $_SESSION['error'] = 'Vui lòng nhập mật khẩu mới';
+            // }
+            // if (empty($_POST['con_new_pass'])) {
+            //     $_SESSION['error'] = 'Vui lòng xác nhập mật khẩu mới';
+            // }
+            // if (!password_verify($_POST['old_pass'], $oldPassword)) {
+            //     $_SESSION['error'] = 'Mật khẩu cũ không chính xác';
+            // }
+            
+            // if ($_POST['new_pass'] != $_POST['con_new_pass']) {
+            //     $_SESSION['error'] = 'Mật khẩu mới và xác nhận mật khẩu không trùng khớp';
+            // }
+            // $_SESSION['errors'] =$errors;
+            // if ($errors >0) {
+            //     header('location:' .$_SERVER['HTTP_REFERER']);
+            //     exit();
+            // }
+            $changePass = $this->updatePassword($_POST['new_pass']);
+            if ($changePass) {
+                $_SESSION['success'] = 'Cập nhật mật khẩu thành công';
+                header('location:' . $_SERVER['HTTP_REFERER']);
+                exit();
+            }else{
+                $_SESSION['error'] = 'Cập nhật mật khẩu không thành công. Vui lòng kiểm tra lại';
+                header('location:' . $_SERVER['HTTP_REFERER']);
+                exit();
+            }
+            
+        }
+    }
 }
