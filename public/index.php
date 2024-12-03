@@ -76,6 +76,9 @@ switch ($action) {
     case 'login':
         $auth->signin();
         break;
+    case 'logout':
+        $auth->logout();
+        break;
     case 'profile':
         include '../views/client/profile/profile.php';
         break;

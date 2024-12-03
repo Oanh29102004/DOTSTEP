@@ -1,10 +1,6 @@
 <?php
 require '../connect/connect.php';
-class Category extends connect  {
-    // tính chất OOP
-    // Lập trình hướng đối tượng dựa trên khái niệm lớp và đối tượng
-    // 4 tính chất của OOP
-    // Kế thừa : extends tạo lớp con kế thừa toàn bộ tính chất thuộc tinh phương thức của lớp cha và tái sử dụng lớp cha 
+class Category extends connect  { 
     public function listCategory(){
         $sql = 'SELECT * FROM categorys';
         $stmt = $this->connect()->prepare($sql);

@@ -13,7 +13,7 @@
           <li><a href="account_edit_address.html" class="menu-link menu-link_us-s">Addresses</a></li>
           <li><a href="account_edit.html" class="menu-link menu-link_us-s menu-link_active">Account Details</a></li>
           <li><a href="account_wishlist.html" class="menu-link menu-link_us-s">Wishlist</a></li>
-          <li><a href="login_register.html" class="menu-link menu-link_us-s">Logout</a></li>
+          <li><a href="?act=logout" class="menu-link menu-link_us-s">Logout</a></li>
         </ul>
       </div>
       <div class="col-lg-9">

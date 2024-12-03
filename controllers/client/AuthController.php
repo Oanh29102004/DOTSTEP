@@ -67,4 +67,10 @@ class AuthController extends User
         }
         include '../views/client/auth/login_register.php';
     }
+    public function logout(){
+        if(isset($_SESSION['user'])){
+            session_destroy();
+        }
+        header("Location: ./");
+    }
 }
