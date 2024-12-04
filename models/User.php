@@ -45,8 +45,7 @@ require_once  '../connect/connect.php';
         $sql = 'SELECT password FROM users Where user_id =?'; 
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$_SESSION['user']['user_id']]);
-        return $stmt->fetchColumn();
-
+        return $stmt->fetchColumn();  
       }
 
       public function auth($email, $password){

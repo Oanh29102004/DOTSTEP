@@ -111,4 +111,5 @@
   </section>
 </main>
 <?php
+unset($_SESSION['errors']);
 include '../views/client/layout/footer.php' ?>
