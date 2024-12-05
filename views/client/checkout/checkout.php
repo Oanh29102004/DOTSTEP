@@ -1,6 +1,7 @@
 <?php include '../views/client/layout/header.php' ?> 
 <main>
     <div class="mb-4 pb-4"></div>
+    <div class="mb-4 pb-4"></div>
     <section class="shop-checkout container">
       <h2 class="page-title">Shipping and Checkout</h2>
       <div class="checkout-steps">
@@ -128,44 +129,33 @@
               </div>
               <div class="checkout__payment-methods">
                 <div class="form-check">
-                  <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_1" checked>
+                  <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_1">
                   <label class="form-check-label" for="checkout_payment_method_1">
                     Direct bank transfer
-                    <span class="option-detail d-block">
-                      Make your payment directly into our bank account. Please use your Order ID as the payment reference.Your order will not be shipped until the funds have cleared in our account.
-                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_2">
                   <label class="form-check-label" for="checkout_payment_method_2">
                     Check payments
-                    <span class="option-detail d-block">
-                      Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.
-                    </span>
+                    
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input form-check-input_fill" type="radio" name="payment_method" id="payment_method_3" value="cod">
                   <label class="form-check-label" for="checkout_payment_method_3">
                     Cash on delivery
-                    <span class="option-detail d-block">
-                      Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.
-                    </span>
+                    
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_4">
                   <label class="form-check-label" for="checkout_payment_method_4">
                     Paypal
-                    <span class="option-detail d-block">
-                      Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.
-                    </span>
+                    
                   </label>
                 </div>
-                <div class="policy-text">
-                  Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="terms.html" target="_blank">privacy policy</a>.
-                </div>
+                
               </div>
               <button type="submit" name="checkout" class="btn btn-primary btn-checkout">PLACE ORDER</button>
             </div>

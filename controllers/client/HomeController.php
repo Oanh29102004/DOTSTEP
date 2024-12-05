@@ -1,17 +1,19 @@
 <?php
 require_once '../models/Category.php';
 require_once '../models/Product.php';
+require_once '../models/Wishlist.php';
 
 class HomeController {
 
     protected $category;
     protected $product;
 
-
+    protected $wishList;
     public function __construct()
     {
         $this -> category = new Category();
         $this -> product = new Product();
+        $this ->wishList = new WishList();
     }
     public function index() 
     {

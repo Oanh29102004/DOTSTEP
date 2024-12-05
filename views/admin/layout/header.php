@@ -80,9 +80,9 @@
                             <i class="icofont-notepad fs-5"></i> <span>Orders</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                         <!-- Menu: Sub menu ul -->
                         <ul class="sub-menu collapse" id="menu-order">
-                            <li><a class="ms-link" href="order-list.html">Orders List</a></li>
-                            <li><a class="ms-link" href="order-details.html">Order Details</a></li>
-                            <li><a class="ms-link" href="order-invoices.html">Order Invoices</a></li>
+                            <li><a class="ms-link" href="index.php?act=order-list">Orders List</a></li>
+                            <li><a class="ms-link" href="index.php?act=order-edit">Order Details</a></li>
+                            
                         </ul>
                     </li>
                     <li class="collapsed">

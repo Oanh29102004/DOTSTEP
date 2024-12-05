@@ -3,26 +3,36 @@ session_start();
 require_once('../controllers/admin/CategoryAdminController.php');
 require_once('../controllers/admin/ProductAdminController.php');
 require_once('../controllers/admin/CouponAdminController.php');
+
 require_once('../controllers/admin/AuthAdminController.php');
+
+require_once('../controllers/admin/OrderAdminController.php');
+
 require_once('../controllers/client/AuthController.php');
 require_once('../controllers/client/HomeController.php');
 require_once('../controllers/client/ProfileController.php');
 require_once('../controllers/client/CartController.php');
 require_once('../controllers/client/OrderController.php');
+require_once('../controllers/client/WishListController.php');
 
+$action = isset($_GET['act']) ? $_GET['act'] : 'index';
 
 $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
 $couponAdmin = new CouponAdminController();
+
 $authAdmin = new AuthAdminController();
+=======
+$orderAdmin = new OrderAdminController();
 
 
+$wishList = new WishListController();
 $cart = new CartController();
 $home = new HomeController();
 $auth = new AuthController();
 $profile = new ProfileController();
-$order = new OrderController(); 
-$action = isset($_GET['act']) ? $_GET['act'] : 'index';
+$order = new OrderController();
+
 
 switch ($action) {
     case 'admin':
@@ -105,7 +115,7 @@ switch ($action) {
         $auth->changePassword();
         break;
     case 'profile':
-        include '../views/client/profile/profile.php';
+        $profile->index();
         break;
     case 'cart':
         $cart->index();
@@ -149,10 +159,42 @@ switch ($action) {
         break;
     case 'checkout':
         $order->index();
-        
         break;
     case 'order':
         $authAdmin-> middleware();
         $order->checkout();
+        break;
+
+    case 'wishlist':
+        $wishList->index();
+        break;
+    case 'wishlist-add':
+        $wishList->add();
+        break;
+    case 'wishlist-delete':
+        $wishList->delete();
+
+    case 'order-list':
+        $orderAdmin->list();
+        break;
+    case 'order-edit':
+        $orderAdmin->edit();
+        break;
+    case 'order-update':
+        $orderAdmin->update();
+        break;
+    case 'order-delete':
+        $orderAdmin->delete();
+        break;
+
+    case 'order-cl':
+        $profile->indexOderClient();
+        break;
+    case 'trash-order':
+        $profile->trashOrder();
+        break;
+    case 'cancel-order':
+        $profile->cancelOrder();
+
         break;
 }
