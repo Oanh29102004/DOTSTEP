@@ -9,6 +9,7 @@ require_once('../controllers/client/HomeController.php');
 require_once('../controllers/client/ProfileController.php');
 require_once('../controllers/client/CartController.php');
 require_once('../controllers/client/OrderController.php');
+require_once('../controllers/client/WishListController.php');
 
 $action = isset($_GET['act']) ? $_GET['act'] : 'index';
 
@@ -17,7 +18,7 @@ $productAdmin = new ProductAdminController();
 $couponAdmin = new CouponAdminController();
 $orderAdmin = new OrderAdminController();
 
-
+$wishList = new WishListController();
 $cart = new CartController();
 $home = new HomeController();
 $auth = new AuthController();
@@ -127,6 +128,16 @@ switch ($action) {
     case 'order':
         $order->checkout();
         break;
+
+    case 'wishlist':
+        $wishList->index();
+        break;
+    case 'wishlist-add':
+        $wishList->add();
+        break;
+    case 'wishlist-delete':
+        $wishList->delete();
+
     case 'order-list':
         $orderAdmin->list();
         break;
@@ -148,5 +159,6 @@ switch ($action) {
         break;
     case 'cancel-order':
         $profile->cancelOrder();
+
         break;
 }
