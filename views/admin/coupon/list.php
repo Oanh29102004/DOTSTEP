@@ -57,7 +57,7 @@
                                             <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                 <a href="?act=coupon-detail&coupon_id=<?= $coupon['coupon_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-eye text-primary"></i></a>
                                                 <a href="?act=coupon-edit&coupon_id=<?= $coupon['coupon_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                <a onclick="if(!confirm('Xóa à ?')) return false;" href="?act=coupon-delete&coupon_id=<?= $coupon['coupon_id'] ?>" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></a>
+                                                <a onclick="return confirm('Xóa à ?')" href="?act=coupon-delete&coupon_id=<?= $coupon['coupon_id'] ?>" class="btn btn-outline-secondary"><i class="icofont-ui-delete text-danger"></i></a>
                                             </div>
                                         </td>
                                     </tr>
