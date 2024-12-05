@@ -249,4 +249,5 @@ class Product extends connect
         $stmt = $this->connect()->prepare($sql);
         return $stmt->execute([$_GET['id']]);
     }
+
 }
