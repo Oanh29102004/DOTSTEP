@@ -2,9 +2,7 @@
 $uniqueColors = array_unique(array_column($productDetail['variants'], 'product_variant_color_code'));
 $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_variant_size'));
 ?>
-
 <?php include '../views/client/layout/header.php' ?>
-
 <main>
     <div class="mb-md-1 pb-md-3"></div>
     <div class="mb-md-1 pb-md-3"></div>
@@ -138,7 +136,7 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
                     </div>
                 </form>
                 <div class="product-single__addtolinks">
-                    <a href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <a href="?act=wishlist-add&product_id=<?= $productDetail['product_id'] ?>" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_heart" />
                         </svg><span>Add to Wishlist</span></a>
                     <share-button class="share-button">

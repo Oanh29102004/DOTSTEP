@@ -8,13 +8,14 @@ require_once('../controllers/client/HomeController.php');
 require_once('../controllers/client/ProfileController.php');
 require_once('../controllers/client/CartController.php');
 require_once('../controllers/client/OrderController.php');
+require_once('../controllers/client/WishListController.php');
 
 
 $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
 $couponAdmin = new CouponAdminController();
 
-
+$wishList = new WishListController();
 $cart = new CartController();
 $home = new HomeController();
 $auth = new AuthController();
@@ -121,5 +122,14 @@ switch ($action) {
         break;
     case 'order':
         $order->checkout();
+        break;
+    case 'wishlist':
+        $wishList->index();
+        break;
+    case 'wishlist-add':
+        $wishList->add();
+        break;
+    case 'wishlist-delete':
+        $wishList->delete();
         break;
 }

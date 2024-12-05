@@ -1,5 +1,9 @@
 <?php include '../views/client/layout/header.php' ?>
 <main>
+    <div class="mb-md-1 pb-md-3"></div>
+    <div class="mb-md-1 pb-md-3"></div>
+    <div class="mb-md-1 pb-md-3"></div>
+    <div class="mb-md-1 pb-md-3"></div>
     <div class="mb-4 pb-4"></div>
     <section class="shop-checkout container">
       <h2 class="page-title">Cart</h2>
@@ -77,7 +81,7 @@
                 </td>
                 <td>
                   <a href="?act=delete-cart&cart_id=<?= $cart['cart_id'] ?>" onclick="return confirm('Bạn có chắc xóa sản phẩm khỏi giỏ hàng không?') " >
-                    <span>Remote</span>                
+                    <span>x Remove</span>                
                   </a>
                 </td>
               </tr>
