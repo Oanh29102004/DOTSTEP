@@ -249,7 +249,7 @@ class ProductAdminController extends Product
                 exit();
             } else {
                 $_SESSION['error'] = 'Cập nhật không thành công. Vui lòng thử lại.';
-                header('Location:' . $_SERVER['HTTP_REFERER']);
+                header('Location:' . $_SERVER['HTTP_REFERER']);-
                 exit();
             }
         }

@@ -3,7 +3,11 @@ session_start();
 require_once('../controllers/admin/CategoryAdminController.php');
 require_once('../controllers/admin/ProductAdminController.php');
 require_once('../controllers/admin/CouponAdminController.php');
+
+require_once('../controllers/admin/AuthAdminController.php');
+
 require_once('../controllers/admin/OrderAdminController.php');
+
 require_once('../controllers/client/AuthController.php');
 require_once('../controllers/client/HomeController.php');
 require_once('../controllers/client/ProfileController.php');
@@ -16,7 +20,11 @@ $action = isset($_GET['act']) ? $_GET['act'] : 'index';
 $categoryAdmin = new CategoryAdminController();
 $productAdmin = new ProductAdminController();
 $couponAdmin = new CouponAdminController();
+
+$authAdmin = new AuthAdminController();
+=======
 $orderAdmin = new OrderAdminController();
+
 
 $wishList = new WishListController();
 $cart = new CartController();
@@ -28,42 +36,61 @@ $order = new OrderController();
 
 switch ($action) {
     case 'admin':
+        $authAdmin-> middleware();
         include '../views/admin/index.php';
         break;
+    case 'auth':
+        $authAdmin-> signin();
+        break;
+    case 'logout-admin':
+        $authAdmin-> logout();
+        break;
     case 'product':
+        $authAdmin-> middleware();
         $productAdmin->index();
         break;
     case 'product-create':
+        $authAdmin-> middleware();
         $productAdmin->create();
         break;
     case 'product-store':
+        $authAdmin-> middleware();
         $productAdmin->store();
         break;
     case 'product-edit':
+        $authAdmin-> middleware();
         $productAdmin->edit();
         break;
     case 'product-update':
+        $authAdmin-> middleware();
         $productAdmin->update();
         break;
     case 'gallery-delete':
+        $authAdmin-> middleware();
         $productAdmin->deleteGallery();
         break;
     case 'product-variant-delete':
+        $authAdmin-> middleware();
         $productAdmin->deleteProductVariant();
         break;
     case 'product-delete':
+        $authAdmin-> middleware();
         $productAdmin->deleteProduct();
         break;
     case 'category-list':
+        $authAdmin-> middleware();
         $categoryAdmin->index();
         break;
     case 'category-create':
+        $authAdmin-> middleware();
         $categoryAdmin->addCategory();
         break;
     case 'category-edit':
+        $authAdmin-> middleware();
         $categoryAdmin->updateCategory();
         break;
     case 'category-delete':
+        $authAdmin-> middleware();
         $categoryAdmin->deleteCategory();
         break;
     case 'index':
@@ -83,6 +110,9 @@ switch ($action) {
         break;
     case 'logout':
         $auth->logout();
+        break;
+    case 'change-password':
+        $auth->changePassword();
         break;
     case 'profile':
         $profile->index();
@@ -108,24 +138,30 @@ switch ($action) {
         break;
 
     case 'coupon':
+        $authAdmin-> middleware();
         $couponAdmin->index();
         break;
     case 'coupon-create':
+        $authAdmin-> middleware();
         $couponAdmin->create();
         break;
     case 'coupon-edit':
+        $authAdmin-> middleware();
         $couponAdmin->edit();
         break;
     case 'coupon-update':
+        $authAdmin-> middleware();
         $couponAdmin->update();
         break;
     case 'coupon-delete':
+        $authAdmin-> middleware();
         $couponAdmin->delete();
         break;
     case 'checkout':
         $order->index();
         break;
     case 'order':
+        $authAdmin-> middleware();
         $order->checkout();
         break;
 

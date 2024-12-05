@@ -59,32 +59,47 @@
                 </div>
                 <div class="col-md-12">
                   <div class="my-3">
-                    <h5 class="text-uppercase mb-0">Thay đổi mật khẩu</h5>
+                    <button class="btn btn-primary" name="update-profile">Thay đổi Profile</button>
                   </div>
                 </div>
-                <div class="col-md-12">
-                  <div class="form-floating my-3">
-                    <input type="password" class="form-control" id="account_current_password" placeholder="Current password">
-                    <label for="account_current_password">Mật khẩu cũ</label>
-                  </div>
+            </form>
+            <div class="col-md-12">
+              <div class="my-3">
+                <h5 class="text-uppercase mb-0">Thay đổi mật khẩu</h5>
+              </div>
+            </div>
+            <form action="?act=change-password" method="POST">
+              <div class="col-md-12">
+                <div class="form-floating my-3">
+                  <input type="password" class="form-control" name="old_pass" id="old_pass" placeholder="Current password">
+                  <label for="old_pass">Mật khẩu cũ</label>
                 </div>
-                <div class="col-md-12">
-                  <div class="form-floating my-3">
-                    <input type="password" class="form-control" id="account_new_password" placeholder="New password">
-                    <label for="account_new_password">Mật khẩu mới</label>
-                  </div>
+                <?php if (isset($_SESSION['errors']['old_pass'])) : ?>
+                  <p class="text-danger"><?= $_SESSION['errors']['old_pass']  ?></p>
+                <?php endif; ?>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating my-3">
+                  <input type="password" class="form-control" name="new_password" id="new_password" placeholder="New password">
+                  <label for="new_password">Mật khẩu mới</label>
                 </div>
-                <div class="col-md-12">
-                  <div class="form-floating my-3">
-                    <input type="password" class="form-control" data-cf-pwd="#account_new_password" id="account_confirm_password" placeholder="Confirm new password">
-                    <label for="account_confirm_password">Nhập lại Mật khẩu mới</label>
-                    <div class="invalid-feedback">Passwords did not match!</div>
-                  </div>
+                <?php if (isset($_SESSION['errors']['new_password'])) : ?>
+                  <p class="text-danger"><?= $_SESSION['errors']['new_password']  ?></p>
+                <?php endif; ?>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating my-3">
+                  <input type="password" class="form-control" data-cf-pwd="#account_new_password" name="con_new_pass" id="con_new_pass" placeholder="Confirm new password">
+                  <label for="con_new_password">Nhập lại Mật khẩu mới</label>
+                  <div class="invalid-feedback">Passwords did not match!</div>
                 </div>
-                <div class="col-md-12">
-                  <div class="my-3">
-                    <button class="btn btn-primary" name="update-profile">Lưu thay đổi</button>
-                  </div> 
+                <?php if (isset($_SESSION['errors']['con_new_pass'])) : ?>
+                  <p class="text-danger"><?= $_SESSION['errors']['con_new_pass']  ?></p>
+                <?php endif; ?>
+              </div>
+              <div class="col-md-12">
+                <div class="my-3">
+                  <button class="btn btn-primary" name="change-password">Thay Đổi Mật Khẩu</button>
                 </div>
               </div>
             </form>
@@ -92,7 +107,9 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 </main>
-<?php 
+<?php
+unset($_SESSION['errors']);
 include '../views/client/layout/footer.php' ?>

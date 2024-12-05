@@ -255,9 +255,10 @@
                                             </div>
                                         </div>
                                         <div class="list-group m-2 ">
+                                            <h6 class="dropdown-header">Welcom <?= $_SESSION['user_admin']['name'] ?></h6>
                                             <a href="admin-profile.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-ui-user fs-5 me-3"></i>Profile Page</a>
                                             <a href="order-invoices.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-file-text fs-5 me-3"></i>Order Invoices</a>
-                                            <a href="admin/ui-elements/auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-5 me-3"></i>Signout</a>
+                                            <a href="?act=logout-admin" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-5 me-3"></i>Signout</a>
                                         </div>
                                     </div>
                                 </div>
