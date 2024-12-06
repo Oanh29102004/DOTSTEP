@@ -145,10 +145,10 @@
 
                 <div class="pc__info position-relative">
                   <p class="pc__category"><?= $pro['category_name'] ?></p>
-                  <h6 class="pc__title"><a href="product1_simple.html"><?= $pro['product_name'] ?></a></h6>
+                  <h6 class="pc__title"><a href="?act=product-detail&slug=<?= $pro['product_slug'] ?>"><?= $pro['product_name'] ?></a></h6>
                   <div class="product-card__price d-flex">
-                    <span class="money price price-old">$<?= $pro['product_price'] ?></span>
-                    <span class="money price price-sale">$<?= $pro['product_sale_price'] ?></span>
+                    <span class="money price price-old"><?= number_format( $pro['product_price']*1000 , 0, ',' , '.')  ?> đ </span>
+                    <span class="money price price-sale"><?= number_format( $pro['product_sale_price']*1000 , 0, ',' , '.')  ?> đ</span>
                   </div>
                 </div>
               </div>
@@ -156,7 +156,7 @@
           <?php endforeach; ?>
           </div><!-- /.row -->
           <div class="text-center mt-2">
-            <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="shop1.html">See All Products</a>
+            <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="?act=shop">See All Products</a>
           </div>
         </div><!-- /.tab-pane fade show-->
 

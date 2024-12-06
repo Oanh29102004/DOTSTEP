@@ -249,5 +249,21 @@ class Product extends connect
         $stmt = $this->connect()->prepare($sql);
         return $stmt->execute([$_GET['id']]);
     }
+    public function search($keyword){
+        $sql = 'SELECT 
+        products.product_id as product_id,
+        products.name as product_name,
+        products.image as product_image,
+        products.price as product_price,
+        products.slug as product_slug,
+        products.sale_price as product_sale_price,
+        categorys.name as category_name
+        FROM products 
+        left join categorys on products.category_id = categorys.category_id
+        where lower(products.name) like lower(?) ';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute(['%' . $keyword . '%']);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 }

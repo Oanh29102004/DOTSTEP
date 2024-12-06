@@ -305,23 +305,16 @@
           </div>
 
           <div class="search-popup js-hidden-content">
-            <form action="https://uomo-html.flexkitux.com/Demo4/search_result.html" method="GET" class="search-field container">
+            <form action="?act=shop" method="post" class="search-field container">
               <p class="text-uppercase text-secondary fw-medium mb-4">Bạn muốn tìm kiếm gì?</p>
               <div class="position-relative">
-                <input class="search-field__input search-popup__input w-100 fw-medium" type="text" name="search-keyword" placeholder="Search products">
-                <button class="btn-icon search-popup__submit" type="submit">
+                <input class="search-field__input search-popup__input w-100 fw-medium" type="text" name="keyword" placeholder="Search products">
+                <button class="btn-icon search-popup__submit" type="submit" name="search" >
                   <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#icon_search" />
                   </svg>
                 </button>
                 <button class="btn-icon btn-close-lg search-popup__reset" type="reset"></button>
-              </div>
-
-              <div class="search-popup__results">
-                <div class="sub-menu search-suggestion">
-                </div>
-
-                <div class="search-result row row-cols-5"></div>
               </div>
             </form><!-- /.header-search -->
           </div><!-- /.search-popup -->
