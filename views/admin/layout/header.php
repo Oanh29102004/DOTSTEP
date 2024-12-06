@@ -42,7 +42,7 @@
         <!-- sidebar -->
         <div class="sidebar px-4 py-4 py-md-4 me-0">
             <div class="d-flex flex-column h-100">
-                <a href="index.php?act=admin" class="mb-0 brand-icon">
+                <a href="./" class="mb-0 brand-icon">
                     <span class="logo-icon">
                         <img src="im" alt="">
                     </span>
@@ -233,7 +233,7 @@
                             </div>
                             <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                                 <div class="u-info me-2">
-                                        <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
+                                        <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold"><?= $_SESSION['user']['name'] ?></span></p>
                                         <small>Admin Profile</small>
                                 </div>
                                 <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -245,8 +245,8 @@
                                             <div class="d-flex py-1">
                                                 <img class="avatar rounded-circle" src="admin/assets/images/profile_av.svg" alt="profile">
                                                 <div class="flex-fill ms-3">
-                                                    <p class="mb-0"><span class="font-weight-bold">John Quinn</span></p>
-                                                    <small class="">Johnquinn@gmail.com</small>
+                                                    <p class="mb-0"><span class="font-weight-bold"><?= $_SESSION['user']['name'] ?></span></p>
+                                                    <small class=""><?= $_SESSION['user']['email'] ?></small>
                                                 </div>
                                             </div>
 
@@ -256,8 +256,6 @@
                                         </div>
                                         <div class="list-group m-2 ">
                                             <h6 class="dropdown-header">Welcom <?= $_SESSION['user_admin']['name'] ?></h6>
-                                            <a href="admin-profile.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-ui-user fs-5 me-3"></i>Profile Page</a>
-                                            <a href="order-invoices.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-file-text fs-5 me-3"></i>Order Invoices</a>
                                             <a href="?act=logout-admin" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-5 me-3"></i>Signout</a>
                                         </div>
                                     </div>

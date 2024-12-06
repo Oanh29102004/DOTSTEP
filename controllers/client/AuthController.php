@@ -28,7 +28,7 @@ class AuthController extends User
                 header('location: ?act=login');
                 exit();
             } else {
-                $_SESSION['error'] = 'Tạo tài khoản k thành công. Vui lòng đăng nhập ';
+                $_SESSION['error'] = 'Tạo tài khoản k thành công. Vui lòng kiểm tra lại ';
                 header('Location:' . $_SERVER['HTTP_REFERER']);
                 exit();
             }
