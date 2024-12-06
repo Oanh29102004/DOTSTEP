@@ -92,8 +92,8 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
                         </div>
                         <div class="product-single__price">
 
-                            <span class="current-price price-variants"><?= number_format($productDetail['variant_sale_price'] *1000 , 0, ',' , '.')  ?> đ</span>
-                            <span class="money price price-old sale-price-variants"><?= number_format($productDetail['variant_price'] *1000 , 0, ',' , '.')  ?> đ</span>
+                            <span class="current-price price-variants"><?= number_format($productDetail['variant_sale_price'] * 1000, 0, ',', '.')  ?> đ</span>
+                            <span class="money price price-old sale-price-variants"><?= number_format($productDetail['variant_price'] * 1000, 0, ',', '.')  ?> đ</span>
                             <input type="hidden" name="variant_id" id="variant_id">
                         </div>
                         <div class="product-single__short-desc">
@@ -181,96 +181,168 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
                 </div>
             </div>
         </div>
+        <div class="product-single__details-tab">
+            <ul class="nav nav-tabs" id="myTab1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link nav-link_underscore active" id="tab-description-tab" data-bs-toggle="tab" href="#tab-description" role="tab" aria-controls="tab-description" aria-selected="true">Reviews</a>
+                </li>
 
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab-description" role="tabpanel" aria-labelledby="tab-description-tab">
+                    <div class="product-single__description">
+                        <?php foreach ($reviews as $review): ?>
+                            <div class="product-single__reviews-list">
+                                <div class="product-single__reviews-item">
+                                    <div class="customer-review">
+                                        <div class="customer-name">
+                                            <h6><?= $review['user_name'] ?></h6>
+                                            <div class="reviews-group d-flex">
+                                                <?php for($i = 0; $i < ($review['rating']); $i++): ?>
+                                                <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                                                    <use href="#icon_star" />
+                                                </svg>
+                                                <?php endfor; ?>
+                                            </div>
+                                        </div>
+                                        <div class="review-date"><?= date('d/m/Y', strtotime($review['created_at'])) ?></div>
+                                        <div class="review-text">
+                                            <p> <?= $review['content'] ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+
+                        <div class="product-single__review-form">
+                            <form name="customer-review-form" action="?act=review" method="post">
+                                <h5>Be the first to review “Message Cotton T-Shirt”</h5>
+                                <p>Your email address will not be published. Required fields are marked *</p>
+                                <div class="select-star-rating">
+                                    <label>Your rating *</label>
+                                    <span class="star-rating">
+                                        <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
+                                        </svg>
+                                        <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
+                                        </svg>
+                                        <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
+                                        </svg>
+                                        <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
+                                        </svg>
+                                        <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
+                                        </svg>
+                                    </span>
+                                    <input type="hidden" id="form-input-rating" name="rating" value="">
+                                    <input type="hidden" name="product_id" value="<?= $productDetail['product_id'] ?>">
+                                </div>
+                                <div class="mb-4">
+                                    <textarea id="form-input-review" name="content" class="form-control form-control_gray" placeholder="Your Review" cols="30" rows="8"></textarea>
+                                </div>
+                                <div class="form-action">
+                                    <button type="submit" class="btn btn-primary" name="review">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
     </section>
 
 </main>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    let selectedColor = null;
-    let selectedSize = null;
+    document.addEventListener('DOMContentLoaded', function() {
+        let selectedColor = null;
+        let selectedSize = null;
 
-    const variants = <?= json_encode($productDetail['variants']) ?>;
-    const colorButtons = document.querySelectorAll('.btn-color');
-    const sizeButtons = document.querySelectorAll('.btn-size');
+        const variants = <?= json_encode($productDetail['variants']) ?>;
+        const colorButtons = document.querySelectorAll('.btn-color');
+        const sizeButtons = document.querySelectorAll('.btn-size');
 
-    // Khi người dùng chọn màu
-    colorButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            selectedColor = this.getAttribute('data-color'); // Lấy mã màu
-            updateSize(); // Cập nhật kích thước khả dụng
-            checkPrice(); // Hiển thị giá
-        });
-    });
-
-    // Khi người dùng chọn size
-    sizeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            selectedSize = this.getAttribute('data-size'); // Lấy size
-            updateColor(); // Cập nhật màu khả dụng
-            checkPrice(); // Hiển thị giá
-        });
-    });
-
-    // Cập nhật màu khả dụng
-    function updateColor() {
+        // Khi người dùng chọn màu
         colorButtons.forEach(button => {
-            const color = button.getAttribute('data-color');
-            const isAvailable = variants.some(variant =>
-                variant.product_variant_color_code === color &&
-                variant.product_variant_size === selectedSize
-            );
-            button.disabled = false; // Cho phép đổi màu
-            button.style.opacity = isAvailable ? '1' : '0.1'; // Làm mờ nếu không khả dụng
+            button.addEventListener('click', function() {
+                selectedColor = this.getAttribute('data-color'); // Lấy mã màu
+                updateSize(); // Cập nhật kích thước khả dụng
+                checkPrice(); // Hiển thị giá
+            });
         });
-    }
 
-    // Cập nhật kích thước khả dụng
-    function updateSize() {
+        // Khi người dùng chọn size
         sizeButtons.forEach(button => {
-            const size = button.getAttribute('data-size');
-            const isAvailable = variants.some(variant =>
-                variant.product_variant_color_code === selectedColor &&
-                variant.product_variant_size === size
-            );
-            button.disabled = false; // Cho phép đổi size
-            button.style.opacity = isAvailable ? '1' : '0.1'; // Làm mờ nếu không khả dụng
+            button.addEventListener('click', function() {
+                selectedSize = this.getAttribute('data-size'); // Lấy size
+                updateColor(); // Cập nhật màu khả dụng
+                checkPrice(); // Hiển thị giá
+            });
         });
-    }
 
-    // Hiển thị giá và thông tin
-    function checkPrice() {
-        if (selectedColor && selectedSize) {
-            const matchedVariant = variants.find(variant =>
-                variant.product_variant_color_code === selectedColor &&
-                variant.product_variant_size == selectedSize
-            );
-            if (matchedVariant) {
-                document.querySelector('.price-variants').textContent = formatPrice(matchedVariant.product_variant_price);
-                document.querySelector('.sale-price-variants').textContent = formatPrice(matchedVariant.product_variant_sale_price);
-                document.querySelector('.quantity-variants').textContent = `Số lượng: ${matchedVariant.product_variant_quantity}`;
-                document.getElementById('variant_id').value = matchedVariant.product_variant_id;
+        // Cập nhật màu khả dụng
+        function updateColor() {
+            colorButtons.forEach(button => {
+                const color = button.getAttribute('data-color');
+                const isAvailable = variants.some(variant =>
+                    variant.product_variant_color_code === color &&
+                    variant.product_variant_size === selectedSize
+                );
+                button.disabled = false; // Cho phép đổi màu
+                button.style.opacity = isAvailable ? '1' : '0.1'; // Làm mờ nếu không khả dụng
+            });
+        }
+
+        // Cập nhật kích thước khả dụng
+        function updateSize() {
+            sizeButtons.forEach(button => {
+                const size = button.getAttribute('data-size');
+                const isAvailable = variants.some(variant =>
+                    variant.product_variant_color_code === selectedColor &&
+                    variant.product_variant_size === size
+                );
+                button.disabled = false; // Cho phép đổi size
+                button.style.opacity = isAvailable ? '1' : '0.1'; // Làm mờ nếu không khả dụng
+            });
+        }
+
+        // Hiển thị giá và thông tin
+        function checkPrice() {
+            if (selectedColor && selectedSize) {
+                const matchedVariant = variants.find(variant =>
+                    variant.product_variant_color_code === selectedColor &&
+                    variant.product_variant_size == selectedSize
+                );
+                if (matchedVariant) {
+                    document.querySelector('.price-variants').textContent = formatPrice(matchedVariant.product_variant_price);
+                    document.querySelector('.sale-price-variants').textContent = formatPrice(matchedVariant.product_variant_sale_price);
+                    document.querySelector('.quantity-variants').textContent = `Số lượng: ${matchedVariant.product_variant_quantity}`;
+                    document.getElementById('variant_id').value = matchedVariant.product_variant_id;
+                } else {
+                    resetPriceDisplay();
+                }
             } else {
                 resetPriceDisplay();
             }
-        } else {
-            resetPriceDisplay();
         }
-    }
 
-    // Đặt lại giá hiển thị
-    function resetPriceDisplay() {
-        document.querySelector('.price-variants').textContent = '';
-        document.querySelector('.sale-price-variants').textContent = '';
-        document.querySelector('.quantity-variants').textContent = 'Số lượng: 0';
-        document.getElementById('variant_id').value = '';
-    }
+        // Đặt lại giá hiển thị
+        function resetPriceDisplay() {
+            document.querySelector('.price-variants').textContent = '';
+            document.querySelector('.sale-price-variants').textContent = '';
+            document.querySelector('.quantity-variants').textContent = 'Số lượng: 0';
+            document.getElementById('variant_id').value = '';
+        }
 
-    // Định dạng giá tiền
-    function formatPrice(price) {
-        return new Intl.NumberFormat('vi-VN').format(price * 1000) + 'đ';
-    }
-});
+        // Định dạng giá tiền
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN').format(price * 1000) + 'đ';
+        }
+    });
 </script>
 
 <?php include '../views/client/layout/footer.php' ?>
