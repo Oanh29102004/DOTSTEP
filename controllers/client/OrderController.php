@@ -51,6 +51,7 @@ class OrderController
                     $this->order->addOrder($cart['product_id'], $cart['variant_id'], $orderDetail_Id, $cart['quantity']);
                     $this->cart->deleteCart($cart['cart_id']);
                 }
+                
                 unset($_SESSION['total']);
                 unset($_SESSION['coupon']);
                 unset($_SESSION['totalCoupon']);
@@ -62,6 +63,7 @@ class OrderController
                 header('Location: ?act=checkout');
                 exit();
             }
+            
         }
     }
 
