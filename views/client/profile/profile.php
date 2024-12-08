@@ -14,6 +14,9 @@
             <li><a href="?act=profileDetail" class="menu-link menu-link_us-s">Account Details</a></li>
             <li><a href="account_wishlist.html" class="menu-link menu-link_us-s">Wishlist</a></li>
             <li><a href="?act=logout" class="menu-link menu-link_us-s">Logout</a></li>
+            <?php if($_SESSION['user']['role_id'] == 2): ?>
+            <li><a href="?act=auth" class="menu-link menu-link_us-s">Admin</a></li>
+            <?php endif; ?>
           </ul>
         </div>
         <div class="col-lg-9">
