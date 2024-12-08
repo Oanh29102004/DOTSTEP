@@ -47,8 +47,8 @@ class CartController extends Cart
                     $_POST['variant_id'],
                     $_POST['quantity']
                 );
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
                 $_SESSION['success'] = 'Cập nhật giỏ hàng thành công';
-                header('Location' . $_SERVER['HTTP_REFERER']);
                 exit();
             }
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['buy_now'])) {
