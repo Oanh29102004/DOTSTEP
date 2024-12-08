@@ -1,6 +1,8 @@
 <?php include '../views/client/layout/header.php' ?>
 <main>
-   
+<div class="mb-md-1 pb-md-3"></div>
+<div class="mb-md-1 pb-md-3"></div>
+<div class="mb-md-1 pb-md-3"></div>
     <div class="mb-4 pb-4"></div>
     <section class="my-account container">
       <h2 class="page-title">Wishlist</h2>

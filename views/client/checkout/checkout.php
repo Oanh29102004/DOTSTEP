@@ -106,8 +106,8 @@
                     <tr>
                     <th><div> <?= $ship['shipping_id'] ?></div></th>
                     <td>
-                      <input type="hidden" name="shipping_id" value="<?= $ship['shipping_id'] ?>">
-                        <input class="form-check-input form-check-input_fill"  type="radio" value="<?= $ship['shipping_id'] ?>" id="free_shipping-<?= $key+1 ?>">
+                        <input type="text"  value="<?= $ship['shipping_id'] ?>">
+                        <input class="form-check-input form-check-input_fill" name="shipping_id" type="radio" value="<?= $ship['shipping_id'] ?>" id="free_shipping-<?= $key+1 ?>">
                         <label class="form-check-label" for="free_shipping-<?= $key+1 ?>"> <?= $ship['shipping_name'] ?> : <?= number_format($ship['shipping_price']*1000 , 0, ',' , '.')  ?> đ</label>
                     </td>
                     </tr>

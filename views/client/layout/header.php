@@ -216,7 +216,7 @@
             <a href="./" class="navigation__link">Trang chủ </a>
           </li>
           <li class="navigation__item">
-            <a href="#" class="navigation__link">Sản phẩm</a>
+            <a href="?act=shop" class="navigation__link">Sản phẩm</a>
             <!-- <div class="mega-menu">
               <div class="container d-flex">
                 <div class="col pe-4">
@@ -285,10 +285,10 @@
           </li>
           
           <li class="navigation__item">
-            <a href="about.html" class="navigation__link">Thông tin</a>
+            <a href="#" class="navigation__link">Thông tin</a>
           </li>
           <li class="navigation__item">
-            <a href="contact.html" class="navigation__link">Liên hệ</a>
+            <a href="#" class="navigation__link">Liên hệ</a>
           </li>
         </ul><!-- /.navigation__list -->
       </nav><!-- /.navigation -->

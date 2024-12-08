@@ -12,7 +12,7 @@ require_once('../controllers/client/ProfileController.php');
 require_once('../controllers/client/CartController.php');
 require_once('../controllers/client/OrderController.php');
 require_once('../controllers/client/WishListController.php');
-
+require_once('../controllers/client/ShopController.php');
 require_once('../controllers/client/ReviewController.php');
 
 
@@ -165,8 +165,8 @@ switch ($action) {
         $order->index();
         break;
     case 'order':
-        // $authAdmin-> middleware();
-        $authAdmin->middleware();
+       
+        // $authAdmin->middleware();
         $order->checkout();
         break;
     case 'checkout-complete':
