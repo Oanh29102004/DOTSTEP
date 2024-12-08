@@ -165,8 +165,12 @@ switch ($action) {
         $order->index();
         break;
     case 'order':
+        // $authAdmin-> middleware();
         $authAdmin->middleware();
         $order->checkout();
+        break;
+    case 'checkout-complete':
+        include '../views/client/checkout/checkoutComplete.php';
         break;
 
     case 'wishlist':

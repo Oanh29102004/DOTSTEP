@@ -54,7 +54,7 @@ class OrderController
                 unset($_SESSION['total']);
                 unset($_SESSION['coupon']);
                 unset($_SESSION['totalCoupon']);
-                header("Location: ./");
+                header("Location: ?act=checkout-complete");
                 $_SESSION['success'] = 'Đặt hàng thành công';
                 exit();
             } else {

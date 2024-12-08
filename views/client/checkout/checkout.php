@@ -128,7 +128,7 @@
                 </table>
               </div>
               <div class="checkout__payment-methods">
-                <div class="form-check">
+                <!-- <div class="form-check">
                   <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_1">
                   <label class="form-check-label" for="checkout_payment_method_1">
                     Direct bank transfer
@@ -140,7 +140,7 @@
                     Check payments
                     
                   </label>
-                </div>
+                </div> -->
                 <div class="form-check">
                   <input class="form-check-input form-check-input_fill" type="radio" name="payment_method" id="payment_method_3" value="cod">
                   <label class="form-check-label" for="checkout_payment_method_3">
@@ -148,13 +148,13 @@
                     
                   </label>
                 </div>
-                <div class="form-check">
+                <!-- <div class="form-check">
                   <input class="form-check-input form-check-input_fill" type="radio" name="checkout_payment_method" id="checkout_payment_method_4">
                   <label class="form-check-label" for="checkout_payment_method_4">
                     Paypal
                     
                   </label>
-                </div>
+                </div> -->
                 
               </div>
               <button type="submit" name="checkout" class="btn btn-primary btn-checkout">PLACE ORDER</button>
