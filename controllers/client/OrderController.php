@@ -30,6 +30,33 @@ class OrderController
     public function checkout()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['checkout'])) {
+            $errors = [];
+
+        if (empty($_POST['name'])) {
+            $errors['name'] = 'Vui lòng nhập họ tên.';
+        }
+        if (empty($_POST['email'])) {
+            $errors['email'] = 'Vui lòng nhập email.';
+        }
+        if (empty($_POST['phone'])) {
+            $errors['phone'] = 'Vui lòng nhập số điện thoại.';
+        }
+        if (empty($_POST['address'])) {
+            $errors['address'] = 'Vui lòng nhập địa chỉ.';
+        }
+        if (empty($_POST['shipping_id'])) {
+            $errors['shipping_id'] = 'Vui lòng chọn phương thức giao hàng.';
+        }
+        if (empty($_POST['payment_method'])) {
+            $errors['payment_method'] = 'Vui lòng chọn phương thức thanh toán.';
+        }
+
+        // Nếu có lỗi, lưu vào session và chuyển về trang checkout
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            header('Location: ?act=checkout');
+            exit();
+        }
 
             $carts = $this->cart->getAllCart();
 

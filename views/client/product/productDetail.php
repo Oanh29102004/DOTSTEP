@@ -8,6 +8,7 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
     <div class="mb-md-1 pb-md-3"></div>
     <div class="mb-md-1 pb-md-3"></div>
     <div class="mb-md-1 pb-md-3"></div>
+    <div class="mb-md-1 pb-md-3"></div>
     <section class="product-single container">
         <div class="row">
             <div class="col-lg-7">
@@ -53,7 +54,7 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
                         <input type="hidden" name="product_id" value="<?= $productDetail['product_id'] ?>">
                         <div class="d-flex justify-content-between mb-4 pb-md-2">
                             <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
-                                <a href="./" class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
+                                <a href="./" class="menu-link menu-link_us-s text-uppercase fw-medium">Trang chủ</a>
                                 <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
                                 <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium"><?= $productDetail['category_name'] ?></a>
                                 <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
@@ -88,12 +89,12 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
                                     <use href="#icon_star" />
                                 </svg>
                             </div>
-                            <span class="reviews-note text-lowercase text-secondary ms-1">0 reviews</span>
+                            <span class="reviews-note text-lowercase text-secondary ms-1">0 Đánh giá</span>
                         </div>
                         <div class="product-single__price">
 
-                            <span class="current-price price-variants"><?= number_format($productDetail['variant_sale_price'] * 1000, 0, ',', '.')  ?> đ</span>
-                            <span class="money price price-old sale-price-variants"><?= number_format($productDetail['variant_price'] * 1000, 0, ',', '.')  ?> đ</span>
+                            <span class="current-price price-variants"><?= number_format($productDetail['variant_price'] * 1000, 0, ',', '.')  ?> đ</span>
+                            <span class="money price price-old sale-price-variants"><?= number_format($productDetail['variant_sale_price'] * 1000, 0, ',', '.')  ?> đ</span>
                             <input type="hidden" name="variant_id" id="variant_id">
                         </div>
                         <div class="product-single__short-desc">
@@ -102,7 +103,7 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
 
                         <div class="product-single__swatches">
                             <div class="product-swatch color-swatches">
-                                <label>Color</label>
+                                <label>Màu :</label>
                                 <div class="swatch-list">
                                     <?php foreach ($uniqueColors as $key => $color): ?>
                                         <input type="radio" name="color" class="btn-color" id="swatch-color-<?= $key + 1 ?>" data-color="<?= $color ?>">
@@ -111,18 +112,18 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
                                 </div>
                             </div>
                             <div class="product-swatch text-swatches">
-                                <label>Sizes</label>
+                                <label>Kích thước :</label>
                                 <div class="swatch-list">
                                     <?php foreach ($uniqueSizes as $key => $size): ?>
                                         <input type="radio" name="size" class="btn-size" id="swatch-size-<?= $key + 1 ?>" data-size="<?= $size ?>">
                                         <label class="swatch js-swatch" for="swatch-size-<?= $key + 1 ?>"><?= $size ?></label>
                                     <?php endforeach; ?>
                                 </div>
-                                <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
+                                
                             </div>
 
                         </div>
-                        <h3 class="tp-product-details-action-title quantity-variants">Quantity</h3>
+                        <h3 class="tp-product-details-action-title quantity-variants">Số lượng</h3>
                         <div class="product-single__addtocart">
 
                             <div class="qty-control position-relative">
@@ -130,21 +131,21 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
                                 <div class="qty-control__reduce">-</div>
                                 <div class="qty-control__increase">+</div>
                             </div><!-- .qty-control -->
-                            <button type="submit" name="add_to_cart" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Add to Cart</button>
-                            <button type="submit" name="buy_now" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Buy Now</button>
+                            <button type="submit" name="add_to_cart" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Thêm giỏ hàng</button>
+                            <button type="submit" name="buy_now" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Mua ngay</button>
                         </div>
                     </div>
                 </form>
                 <div class="product-single__addtolinks">
                     <a href="?act=wishlist-add&product_id=<?= $productDetail['product_id'] ?>" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_heart" />
-                        </svg><span>Add to Wishlist</span></a>
+                        </svg><span>Yêu thích</span></a>
                     <share-button class="share-button">
                         <button class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
                             <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_sharing" />
                             </svg>
-                            <span>Share</span>
+                            <span>Chia sẻ</span>
                         </button>
                         <details id="Details-share-template__main" class="m-1 xl:m-1.5" hidden="">
                             <summary class="btn-solid m-1 xl:m-1.5 pt-3.5 pb-3 px-5">+</summary>
@@ -165,26 +166,13 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
                     <script src="js/details-disclosure.js" defer="defer"></script>
                     <script src="js/share.js" defer="defer"></script>
                 </div>
-                <div class="product-single__meta-info">
-                    <div class="meta-item">
-                        <label>SKU:</label>
-                        <span>N/A</span>
-                    </div>
-                    <div class="meta-item">
-                        <label>Categories:</label>
-                        <span>Casual & Urban Wear, Jackets, Men</span>
-                    </div>
-                    <div class="meta-item">
-                        <label>Tags:</label>
-                        <span>biker, black, bomber, leather</span>
-                    </div>
-                </div>
+                 
             </div>
         </div>
         <div class="product-single__details-tab">
             <ul class="nav nav-tabs" id="myTab1" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link nav-link_underscore active" id="tab-description-tab" data-bs-toggle="tab" href="#tab-description" role="tab" aria-controls="tab-description" aria-selected="true">Reviews</a>
+                    <a class="nav-link nav-link_underscore active" id="tab-description-tab" data-bs-toggle="tab" href="#tab-description" role="tab" aria-controls="tab-description" aria-selected="true">Đánh giá</a>
                 </li>
 
             </ul>
@@ -216,10 +204,10 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
 
                         <div class="product-single__review-form">
                             <form name="customer-review-form" action="?act=review" method="post">
-                                <h5>Be the first to review “Message Cotton T-Shirt”</h5>
-                                <p>Your email address will not be published. Required fields are marked *</p>
+                                <h5>Hãy là người đầu tiên đánh giá</h5>
+                                <p>Địa chỉ email của bạn sẽ không được công bố. Các trường bắt buộc được đánh dấu *</p>
                                 <div class="select-star-rating">
-                                    <label>Your rating *</label>
+                                    <label>Đánh giả của bạn *</label>
                                     <span class="star-rating">
                                         <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
@@ -244,7 +232,7 @@ $uniqueSizes = array_unique(array_column($productDetail['variants'], 'product_va
                                     <textarea id="form-input-review" name="content" class="form-control form-control_gray" placeholder="Your Review" cols="30" rows="8"></textarea>
                                 </div>
                                 <div class="form-action">
-                                    <button type="submit" class="btn btn-primary" name="review">Submit</button>
+                                    <button type="submit" class="btn btn-primary" name="review">Gửi</button>
                                 </div>
                             </form>
                         </div>

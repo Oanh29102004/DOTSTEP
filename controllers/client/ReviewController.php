@@ -25,7 +25,7 @@ class ReviewController extends Review
                     header('Location:' . $_SERVER['HTTP_REFERER']);
                     exit();
                 } else {
-                    $_SESSION['error'] = 'Đánh giá sản phẩm thất bại.';
+                    $_SESSION['error'] = 'Đánh giá sản phẩm thất bại ( Kiểm tra xem đã từng mua sản phẩm chưa).';
                     header('Location:' . $_SERVER['HTTP_REFERER']);
                     exit();
                 }

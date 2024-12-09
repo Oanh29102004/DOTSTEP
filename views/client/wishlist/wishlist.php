@@ -52,7 +52,7 @@
                   </div><!-- .qty-control -->
                 </td>
                 <td>
-                    <a href="?act=product-detail&slug=<?= $favorite['slug'] ?>" name="add_to_cart" class="btn btn-dark">Thêm giỏ</a>
+                    <a href="?act=product-detail&slug=<?= $favorite['slug'] ?>" name="add_to_cart" class="btn btn-dark">Thêm</a>
                 </td>
                 <td>
                   <a href="?act=wishlist-delete&favorite_id=<?= $favorite['favorite_id']?>" onclick="return confirm('Bạn có chắc xóa sản phẩm khỏi giỏ hàng không?') " >

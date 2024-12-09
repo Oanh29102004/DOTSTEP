@@ -105,7 +105,7 @@
     <div class="mb-1 pb-4 mb-xl-5 pb-xl-5"></div>
 
     <section class="products-carousel container">
-      <h2 class="section-title text-center fw-normal mb-1 mb-md-3 pb-xl-3 mb-xl-4">Trending</h2>
+      <h2 class="section-title text-center fw-normal mb-1 mb-md-3 pb-xl-3 mb-xl-4">Sản phẩm nổi bật</h2>
 
       <ul class="nav nav-tabs mb-3 mb-xl-5 text-uppercase justify-content-center" id="collections-tab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -113,7 +113,7 @@
         </li>
         <?php foreach($category as $cate): ?>
         <li class="nav-item" role="presentation">
-          <a class="nav-link nav-link_underscore" id="collections-tab-2-trigger" data-bs-toggle="tab" href="#collections-tab-2" role="tab" aria-controls="collections-tab-2" aria-selected="true"><?= $cate['name'] ?></a>
+          <a class="nav-link nav-link_underscore" id="collections-tab-2-trigger" data-bs-toggle="tab" href="#" role="tab" aria-controls="collections-tab-2" aria-selected="true"><?= $cate['name'] ?></a>
         </li>
         <?php endforeach;?>
       </ul>
@@ -128,7 +128,7 @@
                   <a href="?act=product-detail&slug=<?= $pro['product_slug'] ?>">
                     <img loading="lazy" src="./images/product/<?= $pro['product_image'] ?>" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                   </a>
-                  <div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-67%</div>
+                  <div class="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">-35%</div>
                   <div class="anim_appear-bottom position-absolute w-100 text-center mb-3">
                     <button class="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">
                       <svg class="d-inline-block" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_cart" /></svg>
