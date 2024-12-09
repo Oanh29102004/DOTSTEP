@@ -1,31 +1,41 @@
-<?php 
+<?php
 require_once '../models/Wishlist.php';
-class WishListController extends Wishlist {
-    public function index() {
+class WishListController extends Wishlist
+{
+    public function index()
+    {
 
         $listWishList = $this->listWishlist();
         include '../views/client/wishlist/wishlist.php';
     }
 
-    public function add() { 
+    public function add()
+    {
+        if (!isset($_SESSION['user'])) {
+
+            $_SESSION['error'] = "Bạn cần đăng nhập trước khi chọn yêu thích.";
+            header("Location: ?act=register");
+            exit();
+        }
         $checkWishList = $this->checkWishList();
-        if ($checkWishList) {   
+        if ($checkWishList) {
             $_SESSION['error'] = 'Sản phẩm này đã có trong danh sách yêu thích của bạn';
             header('location: ' . $_SERVER['HTTP_REFERER']);
             exit();
         }
-        $addWishList = $this-> addWishList();
+        $addWishList = $this->addWishList();
         if ($addWishList) {
             $_SESSION['success'] = 'Thêm sản phẩm yêu thích thành công';
             header('location: ' . $_SERVER['HTTP_REFERER']);
             exit();
         } else {
             $_SESSION['error'] = 'Thêm sản phẩm thất bại';
-            header('location:'. $_SERVER['HTTP_REFERER']);
+            header('location:' . $_SERVER['HTTP_REFERER']);
             exit();
         }
     }
-    public function delete() {
+    public function delete()
+    {
         try {
             $this->deleteWishList();
             $_SESSION['success'] = 'Xóa sản phẩm yêu thích thành công';

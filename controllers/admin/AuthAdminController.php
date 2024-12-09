@@ -17,7 +17,6 @@ class AuthAdminController extends User
             return true;
         }
     }
-
     public function signin()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['auth'])) {

@@ -7,7 +7,7 @@
         <div class="full-width_border border-2" style="border-color: #eeeeee;">
             <div class="shop-banner position-relative ">
                 <div class="background-img" style="background-color: #eeeeee;">
-                    <img loading="lazy" src="../images/shop/shop_banner_character1.png" width="1759" height="420" alt="Pattern" class="slideshow-bg__img object-fit-cover">
+                    <img loading="lazy" src="./images/Slider/image.png" width="1759" height="420" alt="Pattern" class="slideshow-bg__img object-fit-cover">
                 </div>
                 <div class="shop-banner__content container position-absolute start-50 top-50 translate-middle">
                     <h2 class="stroke-text h1 smooth-16 text-uppercase fw-bold mb-3 mb-xl-4 mb-xl-5">Snaker</h2>

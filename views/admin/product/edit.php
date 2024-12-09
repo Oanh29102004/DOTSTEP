@@ -123,7 +123,7 @@
                                                         <input type="checkbox" class="btn-check" id="color-<?= $color['color_id'] ?>-<?= $key ?>" name="variant_color[]"
                                                             value="<?= $color['color_id'] ?>" <?= $value['color_id'] == $color['color_id'] ? 'checked' : '' ?>>
                                                         <label class="btn btn-light avatar-sm rounded d-flex justify-content-center align-items-center" for="color-<?= $color['color_id'] ?>-<?= $key ?>">
-                                                            <i style="background-color: <?= $color['color_code'] ?>; color: <?= $color['color_code'] ?>">/////////|</i> </label>
+                                                        <i style="background-color: <?= $color['color_code'] ?>; color: <?= $color['color_code'] ?>; border-radius: 25px;">/||</i> </label>
                                                     <?php endforeach; ?>
                                                 </div>
                                                 <?php if (isset($_SESSION['errors']['variant_color'])) : ?>
@@ -231,7 +231,7 @@
                                             <?php foreach ($listColors as $color) : ?>
                                                 <input type="checkbox" class="btn-check" id="color-<?= $color['color_id'] ?>-${container.children.length}" value="<?= $color['color_id'] ?>" name="variant_color[]">
                                                 <label class="btn btn-light avatar-sm rounded d-flex justify-content-center align-items-center" for="color-<?= $color['color_id'] ?>-${container.children.length}" > 
-                                                <i style="background-color: <?= $color['color_code'] ?>; color: <?= $color['color_code'] ?>">/////////|</i></label>
+                                                <i style="background-color: <?= $color['color_code'] ?>; color: <?= $color['color_code'] ?>; border-radius: 25px;">/||</i></label>
                                             <?php endforeach; ?>
                                             </div>
                                         </div>
